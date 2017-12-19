@@ -1,16 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+// Routes and Guards
+import { AppRoutingModule } from './app-routing.module';
+import { CoreModule } from './core/core.module';
 
+// base components
 import { AppComponent } from './app.component';
-
+import { CallbackComponent } from './callback.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CallbackComponent,
   ],
   imports: [
-    BrowserModule
+    AppRoutingModule,
+    BrowserModule,
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
