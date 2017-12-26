@@ -23,7 +23,7 @@ export function jwtOptionsFactory(tokenService) {
     tokenGetter: () => {
       return tokenService.getAccessToken().toPromise();
     },
-    whitelistedDomains: []
+    whitelistedDomains: environment.jwtOptions.whitelistedDomains,
   };
 }
 

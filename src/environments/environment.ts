@@ -6,9 +6,12 @@
 export const environment = {
   production: false,
   auth0: {
-    clientID: '<yourclientid>',
+    clientID: '<yourclientID>',
     domain: 'example.auth0.com',
     audience: 'https://example.auth0.com/userinfo',
     redirectUri: 'http://localhost:4200/callback',
-  }
+  },
+  jwtOptions: {
+    whitelistedDomains: ['example.auth0.com'],
+  },
 };
