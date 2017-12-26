@@ -6,9 +6,9 @@
 export const environment = {
   production: false,
   auth0: {
-    clientID: 'B4Z9nW9UHlSxMLB7q4QmOLIdEMhTF5k8',
-    domain: 'admin-demosense.eu.auth0.com',
-    audience: 'https://admin-demosense.eu.auth0.com/userinfo',
+    clientID: '<yourclientid>',
+    domain: 'example.auth0.com',
+    audience: 'https://example.auth0.com/userinfo',
     redirectUri: 'http://localhost:4200/callback',
   }
 };
