@@ -21,8 +21,9 @@ import { TokenService } from './services/token.service';
 export function jwtOptionsFactory(tokenService) {
   return {
     tokenGetter: () => {
-      return tokenService.getAccessToken();
-    }
+      return tokenService.getAccessToken().toPromise();
+    },
+    whitelistedDomains: []
   };
 }
 
