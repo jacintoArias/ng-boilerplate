@@ -41,8 +41,6 @@ export class Auth0Service {
     });
   }
 
-
-
   private payload2profile(payload): Profile {
     const { name, nick } = payload;
     return { name, nick };

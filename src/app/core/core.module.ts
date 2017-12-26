@@ -6,7 +6,7 @@ import { Auth0Service } from './services/auth0.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 
-import { JwtModule } from '@auth0/angular-jwt';
+import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
 
 import { StoreModule } from '@ngrx/store';
@@ -16,6 +16,15 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, metaReducers, effects } from './store';
 
 import { environment } from '../../environments/environment';
+import { TokenService } from './services/token.service';
+
+export function jwtOptionsFactory(tokenService) {
+  return {
+    tokenGetter: () => {
+      return tokenService.getAccessToken();
+    }
+  };
+}
 
 @NgModule({
   imports: [
@@ -23,11 +32,10 @@ import { environment } from '../../environments/environment';
     BrowserAnimationsModule,
     HttpClientModule,
     JwtModule.forRoot({
-      config: {
-        tokenGetter: () => {
-          return localStorage.getItem('access_token');
-        },
-        whitelistedDomains: ['localhost:3001']
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+        deps: [TokenService]
       }
     }),
     StoreModule.forRoot(reducers, { metaReducers }),
@@ -39,6 +47,7 @@ import { environment } from '../../environments/environment';
     Auth0Service,
     AuthService,
     AuthGuard,
+    TokenService
   ]
 })
 export class CoreModule { }
