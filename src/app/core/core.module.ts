@@ -2,10 +2,6 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { Auth0Service } from './services/auth0.service';
-import { AuthService } from './services/auth.service';
-import { AuthGuard } from './guards/auth.guard';
-
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -15,8 +11,12 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { reducers, metaReducers, effects } from './store';
 
-import { environment } from '../../environments/environment';
+import { Auth0Service } from './services/auth0.service';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guards/auth.guard';
 import { TokenService } from './services/token.service';
+
+import { environment } from '@env/environment';
 
 export function jwtOptionsFactory(tokenService) {
   return {

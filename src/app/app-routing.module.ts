@@ -14,7 +14,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: 'app/home/home.module#HomeModule',
+    loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
     canActivate: [AuthGuard],
   },
   {

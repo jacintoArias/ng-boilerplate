@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { map, take } from 'rxjs/operators';
 
-import * as fromRoot from '../store/';
+import * as fromRoot from '../store/index';
 import { Tokens } from '../models/auth';
 
 @Injectable()

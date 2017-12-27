@@ -4,13 +4,12 @@ import { Observable } from 'rxjs/Observable';
 import { catchError, map, take } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 
-import * as fromRoot from '../store/';
+import * as fromRoot from '../store/index';
 import * as Auth from '../store/actions/auth.actions';
 
 import { Auth0Service } from './auth0.service';
 import { TokenService } from './token.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-
 
 @Injectable()
 export class AuthService {
