@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Effect, Actions } from '@ngrx/effects';
-import { tap, map, switchMap, catchError } from 'rxjs/operators';
+import { tap, map, switchMap, catchError, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 
 import { Auth0Service } from '@app/auth/services/auth0.service';
@@ -12,6 +12,7 @@ import {
   LoginSuccess,
   Logout,
 } from '@app/auth/store/actions/auth.actions';
+import { LoadProfile } from '@app/core/store/actions/user.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -34,7 +35,10 @@ export class AuthEffects {
     .ofType(AuthActionTypes.LoginHandle)
     .pipe(
       switchMap((action: LoginHandle) => this.auth0Service.handleAuthentication()),
-      map((res) => new LoginSuccess(res.tokens)),
+      mergeMap((res) => [
+        new LoginSuccess(res.tokens),
+        new LoadProfile(res.profile),
+      ]),
       catchError( (err) => of(new Logout())),
     );
 
