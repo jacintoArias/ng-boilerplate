@@ -3,18 +3,18 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { map, take } from 'rxjs/operators';
 
-import * as fromRoot from '../store/index';
-import { Tokens } from '../models/auth';
+import * as fromAuth from '../store';
+import { Tokens } from '../models/tokens';
 
 @Injectable()
 export class TokenService {
 
   constructor(
-    private store: Store<fromRoot.State>
+    private store: Store<fromAuth.State>
   ) { }
 
   public getTokens(): Observable<Tokens> {
-    return this.store.select(fromRoot.getTokens);
+    return this.store.select(fromAuth.getTokens);
   }
 
   public getAccessToken() {

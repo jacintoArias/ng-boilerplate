@@ -5,19 +5,15 @@ import {
   ActionReducer,
   MetaReducer,
 } from '@ngrx/store';
-import { environment } from '../../../environments/environment';
+import { environment } from '@env/environment';
 import { storeFreeze } from 'ngrx-store-freeze';
 
-import * as fromAuth from './reducers/auth.reducer';
-import { AuthEffects } from './effects/auth.effects';
 import { localStorageSync } from 'ngrx-store-localstorage';
 
 export interface State {
-  auth: fromAuth.State;
 }
 
 export const reducers: ActionReducerMap<State> = {
-  auth: fromAuth.reducer,
 };
 
 // console.log all actions
@@ -38,17 +34,5 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
   ? [logger, storeFreeze, localStorageSyncReducer]
   : [localStorageSyncReducer];
 
-export const effects = [AuthEffects];
+export const effects = [];
 
-
-export const selectAuthState = createFeatureSelector<fromAuth.State>('auth');
-
-export const getTokens = createSelector(
-  selectAuthState,
-  fromAuth.getTokens
-);
-
-export const getProfile = createSelector(
-  selectAuthState,
-  fromAuth.getProfile
-);

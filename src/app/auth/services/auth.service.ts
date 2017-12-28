@@ -3,19 +3,19 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { catchError, map, take } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
-import * as fromRoot from '../store/index';
+import * as fromAuth from '../store';
 import * as Auth from '../store/actions/auth.actions';
 
 import { Auth0Service } from './auth0.service';
 import { TokenService } from './token.service';
-import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable()
 export class AuthService {
 
   constructor(
-    private store: Store<fromRoot.State>,
+    private store: Store<fromAuth.State>,
     private jwt: JwtHelperService,
     private auth0Service: Auth0Service,
     private tokenService: TokenService,

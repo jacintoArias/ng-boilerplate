@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { Effect, Actions } from '@ngrx/effects';
-import { tap, map, switchMap } from 'rxjs/operators';
-import { Auth0Service } from '../../services/auth0.service';
+import { tap, map, switchMap, catchError } from 'rxjs/operators';
+import { of } from 'rxjs/observable/of';
+
+import { Auth0Service } from '@app/auth/services/auth0.service';
 import {
   AuthActionTypes,
   LoginHandle,
   LoginSuccess,
   Logout,
-} from '../actions/auth.actions';
-import { Profile } from '../../models/auth';
+} from '@app/auth/store/actions/auth.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -25,30 +27,28 @@ export class AuthEffects {
     .ofType(AuthActionTypes.Login)
     .pipe(
       tap(() => this.auth0Service.login())
-    )
+    );
 
   @Effect()
   loginHandle$ = this.actions$
     .ofType(AuthActionTypes.LoginHandle)
     .pipe(
-      switchMap((action: LoginHandle) =>
-        this.auth0Service.handleAuthentication()
-          .then( (res) => new LoginSuccess(res))
-          .catch( (err) => new Logout())
-        )
-    )
+      switchMap((action: LoginHandle) => this.auth0Service.handleAuthentication()),
+      map((res) => new LoginSuccess(res.tokens)),
+      catchError( (err) => of(new Logout())),
+    );
 
   @Effect({ dispatch: false })
   loginSuccess$ = this.actions$
     .ofType(AuthActionTypes.LoginSucess)
     .pipe(
       tap(() => this.router.navigate(['/']))
-    )
+    );
 
   @Effect({ dispatch: false })
   logout$ = this.actions$
     .ofType(AuthActionTypes.Logout)
     .pipe(
       tap(() => this.auth0Service.login())
-    )
+    );
 }

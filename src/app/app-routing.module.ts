@@ -5,7 +5,7 @@ import {
 } from '@angular/router';
 
 import { CallbackComponent } from './callback.component';
-import { AuthGuard } from './core/guards/auth.guard';
+import { AuthGuard } from '@app/auth';
 
 export const routes: Routes = [
   {

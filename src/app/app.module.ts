@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 // Routes and Guards
 import { AppRoutingModule } from './app-routing.module';
-import { CoreModule } from './core/core.module';
+import { CoreModule } from '@app/core';
 
 // Base components
 import { AppComponent } from './app.component';
