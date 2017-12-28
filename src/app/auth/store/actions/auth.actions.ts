@@ -5,7 +5,7 @@ export enum AuthActionTypes {
   Login = '[Auth] Login',
   LoginHandle = '[Auth] Login Handle',
   LoginSucess = '[Auth] Login Success',
-  Logout = '[Auth] Logout',
+  Logout = '[Auth] ProfileRemove',
 }
 
 export class Login implements Action {

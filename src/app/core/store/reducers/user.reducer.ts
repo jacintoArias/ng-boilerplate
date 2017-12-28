@@ -12,13 +12,13 @@ const initialState: State = {
 export function reducer(state = initialState, action: UserActions): State {
   switch (action.type) {
 
-    case UserActionTypes.LoadProfile:
+    case UserActionTypes.ProfileLoad:
       return {
         ...state,
         profile: action.payload,
       };
 
-    case UserActionTypes.Logout:
+    case UserActionTypes.ProfileRemove:
       return initialState;
 
     default:

@@ -2,21 +2,21 @@ import { Action } from '@ngrx/store';
 import { Openid } from '@app/core';
 
 export enum UserActionTypes {
-  LoadProfile = '[User] LoadProfile',
-  Logout = '[User] Logout',
+  ProfileLoad = '[User] ProfileLoad',
+  ProfileRemove = '[User] ProfileRemove',
 }
 
-export class LoadProfile implements Action {
-  readonly type = UserActionTypes.LoadProfile;
+export class ProfileLoad implements Action {
+  readonly type = UserActionTypes.ProfileLoad;
 
   constructor(public payload: Openid) {}
 }
 
-export class Logout implements Action {
-  readonly type = UserActionTypes.Logout;
+export class ProfileRemove implements Action {
+  readonly type = UserActionTypes.ProfileRemove;
 }
 
 export type UserActions =
-  LoadProfile |
-  Logout;
+  ProfileLoad |
+  ProfileRemove;
 

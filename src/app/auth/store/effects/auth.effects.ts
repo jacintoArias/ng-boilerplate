@@ -12,7 +12,7 @@ import {
   LoginSuccess,
   Logout,
 } from '@app/auth/store/actions/auth.actions';
-import { LoadProfile } from '@app/core/store/actions/user.actions';
+import { ProfileLoad, ProfileRemove } from '@app/core/store/actions/user.actions';
 
 @Injectable()
 export class AuthEffects {
@@ -37,7 +37,7 @@ export class AuthEffects {
       switchMap((action: LoginHandle) => this.auth0Service.handleAuthentication()),
       mergeMap((res) => [
         new LoginSuccess(res.tokens),
-        new LoadProfile(res.profile),
+        new ProfileLoad(res.profile),
       ]),
       catchError( (err) => of(new Logout())),
     );
@@ -53,6 +53,7 @@ export class AuthEffects {
   logout$ = this.actions$
     .ofType(AuthActionTypes.Logout)
     .pipe(
+      map(() => new ProfileRemove()),
       tap(() => this.auth0Service.login())
     );
 }
