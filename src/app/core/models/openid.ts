@@ -1,4 +1,7 @@
 export interface Openid {
-  'nick': string;
+  'email': string;
+  'email_verified': string;
   'name': string;
+  'nickname': string;
+  'picture': string;
 }

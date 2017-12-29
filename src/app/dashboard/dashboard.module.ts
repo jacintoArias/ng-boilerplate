@@ -12,6 +12,8 @@ import { HomeComponent } from './containers/home.component';
 import { SidenavItemComponent } from './components/sidenav-item.component';
 import { ToolbarComponent } from './components/toolbar.component';
 import { ToolbarButtonComponent } from './components/toolbar-button.component';
+import { UserDetailsComponent } from './components/user-details.component';
+
 import { reducers, effects } from './store/';
 
 @NgModule({
@@ -28,6 +30,7 @@ import { reducers, effects } from './store/';
     SidenavItemComponent,
     ToolbarComponent,
     ToolbarButtonComponent,
+    UserDetailsComponent,
   ],
   providers: [
     LayoutService,

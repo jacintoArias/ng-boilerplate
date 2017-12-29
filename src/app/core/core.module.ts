@@ -7,7 +7,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AuthModule } from '@app/auth';
+import { UserService } from './services/user.service';
 import { environment } from '@env/environment';
+
 import { reducers, metaReducers, effects } from './store';
 
 @NgModule({
@@ -22,6 +24,7 @@ import { reducers, metaReducers, effects } from './store';
   ],
   declarations: [],
   providers: [
+    UserService,
   ]
 })
 export class CoreModule {
