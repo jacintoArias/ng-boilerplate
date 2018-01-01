@@ -7,7 +7,9 @@ import { Openid } from '@app/core';
 @Component({
   selector: 'app-home',
   template: `
-    <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="10px" class="home-wrapper">
+    <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="10px" fxLayoutWrap >
+      <app-user-details [profile]="profile$ | async" ></app-user-details>
+      <app-user-details [profile]="profile$ | async" ></app-user-details>
       <app-user-details [profile]="profile$ | async" ></app-user-details>
     </div>
   `,
