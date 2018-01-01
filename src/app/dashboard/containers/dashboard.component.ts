@@ -14,7 +14,9 @@ import { LayoutService } from '@app/dashboard/services/layout.service';
     </app-toolbar>
 
     <app-sidenav-layout>
-      <router-outlet></router-outlet>
+      <div class="dashboard-wrapper">
+        <router-outlet></router-outlet>
+      </div>
     </app-sidenav-layout>
   `,
   styles: []

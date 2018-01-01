@@ -1,6 +1,12 @@
 
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+// Global
+
+// Dashboard
+
+$app-dashboard-wrapper-padding: 20px;
+
 // some basic resets
 body {
   padding: 0;
@@ -12,3 +18,8 @@ mat-toolbar {
   z-index: 10;
 }
 
+app-dashboard {
+  .dashboard-wrapper {
+    padding: $app-dashboard-wrapper-padding;
+  }
+}

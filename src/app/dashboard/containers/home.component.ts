@@ -11,11 +11,7 @@ import { Openid } from '@app/core';
       <app-user-details [profile]="profile$ | async" ></app-user-details>
     </div>
   `,
-  styles: [`
-      .home-wrapper {
-        padding: 20px;
-      }
-  `]
+  styles: []
 })
 export class HomeComponent implements OnInit {
 
