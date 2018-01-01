@@ -17,6 +17,7 @@ import { reducers, metaReducers, effects } from './store';
     CommonModule,
     BrowserAnimationsModule,
     HttpClientModule,
+
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot(effects),

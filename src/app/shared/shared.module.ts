@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import {FlexLayoutModule} from '@angular/flex-layout';
 import {
   MatInputModule,
   MatCardModule,
@@ -26,10 +27,12 @@ const materialModules = [
 @NgModule({
   imports: [
     CommonModule,
+    FlexLayoutModule,
     ...materialModules,
   ],
   exports: [
     ...materialModules,
+    FlexLayoutModule,
   ],
   declarations: []
 })

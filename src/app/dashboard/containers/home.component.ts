@@ -7,9 +7,15 @@ import { Openid } from '@app/core';
 @Component({
   selector: 'app-home',
   template: `
-    <app-user-details [profile]="profile$ | async" ></app-user-details>
+    <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="10px" class="home-wrapper">
+      <app-user-details [profile]="profile$ | async" ></app-user-details>
+    </div>
   `,
-  styles: []
+  styles: [`
+      .home-wrapper {
+        padding: 20px;
+      }
+  `]
 })
 export class HomeComponent implements OnInit {
 

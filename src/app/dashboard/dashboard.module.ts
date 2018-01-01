@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { LayoutService } from './services/layout.service';
 import { DashboardComponent } from './containers/dashboard.component';
 import { HomeComponent } from './containers/home.component';
+import { SidenavLayoutComponent } from './containers/sidenav-layout.component';
 import { SidenavItemComponent } from './components/sidenav-item.component';
 import { ToolbarComponent } from './components/toolbar.component';
 import { ToolbarButtonComponent } from './components/toolbar-button.component';
@@ -31,6 +32,7 @@ import { reducers, effects } from './store/';
     ToolbarComponent,
     ToolbarButtonComponent,
     UserDetailsComponent,
+    SidenavLayoutComponent,
   ],
   providers: [
     LayoutService,

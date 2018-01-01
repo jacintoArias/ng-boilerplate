@@ -1,13 +1,19 @@
-import { Component, EventEmitter } from '@angular/core';
+import {ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-toolbar',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" class="mat-elevation-z10">
+      <span>Jarias Angular Boilerplate</span>
       <ng-content></ng-content>
     </mat-toolbar>
   `,
-  styles: []
+  styles: [`
+    mat-toolbar {
+      z-index: 10;
+    }
+  `]
 })
 export class ToolbarComponent {
 

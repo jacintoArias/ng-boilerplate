@@ -18,9 +18,6 @@ import { Openid } from '@app/core';
     </mat-card>
   `,
   styles: [`
-    .example-card {
-      width: 400px;
-    }
   `]
 })
 export class UserDetailsComponent {
