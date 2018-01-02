@@ -16,6 +16,10 @@ import { ToolbarButtonComponent } from './components/toolbar-button.component';
 import { UserDetailsComponent } from './components/user-details.component';
 
 import { reducers, effects } from './store/';
+import { GithubApiService } from '@app/dashboard/services/github-api.service';
+import { GithubService } from '@app/dashboard/services/github.service';
+import { GithubUserInfoComponent } from './components/github-user-info.component';
+import { GithubProfileSetterComponent } from './components/github-profile-setter.component';
 
 @NgModule({
   imports: [
@@ -33,9 +37,13 @@ import { reducers, effects } from './store/';
     ToolbarButtonComponent,
     UserDetailsComponent,
     SidenavLayoutComponent,
+    GithubUserInfoComponent,
+    GithubProfileSetterComponent,
   ],
   providers: [
     LayoutService,
+    GithubApiService,
+    GithubService,
   ]
 })
 export class DashboardModule { }

@@ -2,9 +2,13 @@ import { createSelector, createFeatureSelector } from '@ngrx/store';
 
 import * as fromRoot from '@app/core/store';
 import * as fromLayout from './reducers/layout.reducer';
+import * as fromGithub from './reducers/github.reducer';
+
+import { GithubEffects } from './effects/github.effects';
 
 export interface DashboardState {
   layout: fromLayout.State;
+  github: fromGithub.State;
 }
 
 export interface State extends fromRoot.State {
@@ -13,13 +17,16 @@ export interface State extends fromRoot.State {
 
 export const reducers = {
   layout: fromLayout.reducer,
+  github: fromGithub.reducer,
 };
 
-export const effects = [];
+export const effects = [GithubEffects];
 
 
+// Dashboard root
 export const selectDashboardState = createFeatureSelector<DashboardState>('dashboard');
 
+// Layout
 export const selectDashboardLayoutState = createSelector(
   selectDashboardState,
   (state: DashboardState) => state.layout
@@ -29,3 +36,15 @@ export const getSidenav = createSelector(
   selectDashboardLayoutState,
   fromLayout.getSidenav
 );
+
+// Github
+export const selectDashboardGithubState = createSelector(
+  selectDashboardState,
+  (state: DashboardState) => state.github
+);
+
+export const getGithubUser = createSelector(
+  selectDashboardGithubState,
+  fromGithub.getUser
+);
+

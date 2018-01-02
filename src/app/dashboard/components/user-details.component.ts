@@ -4,7 +4,7 @@ import { Openid } from '@app/core';
 @Component({
   selector: 'app-user-details',
   template: `
-    <mat-card class="example-card">
+    <mat-card>
       <mat-card-header>
         <div mat-card-avatar [ngStyle]="setAvatar()"></div>
         <mat-card-title>{{ profile.nickname }}</mat-card-title>
@@ -30,7 +30,7 @@ export class UserDetailsComponent {
     return {
       'background-image': `url('${this.profile.picture}')`,
       'background-size': 'cover',
-    }
+    };
   }
 
 }
