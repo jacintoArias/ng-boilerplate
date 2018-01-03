@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, AbstractControl, AsyncValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'app-github-profile-setter',
@@ -11,11 +11,11 @@ import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
           <form [formGroup]="form">
             <mat-form-field>
               <input matInput formControlName="username" placeholder="github username" [value]="">
-              <mat-error *ngIf="validUsername">Github user not found</mat-error>
+              <mat-error *ngIf="!_validUsername">Github user not found</mat-error>
             </mat-form-field>
             <div>
               <button mat-raised-button
-                      type="button"
+                      type="submit"
                       color="primary"
                       [disabled]="form.pristine"
                       (click)="setUser.emit(form.value)" >
@@ -25,7 +25,7 @@ import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
                       type="button"
                       color="primary"
                       [disabled]="form.pristine"
-                      (click)="resetUser.emit()" >
+                      (click)="reset()" >
                 Reset
               </button>
             </div>
@@ -38,17 +38,27 @@ import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
 })
 export class GithubProfileSetterComponent {
 
-  @Input() validUsername = true;
-  @Output() setUser = new EventEmitter<string>();
-  @Output() resetUser = new EventEmitter<string>();
-
+  _validUsername: boolean;
   form: FormGroup = new FormGroup({
     username: new FormControl('', this.validateUsername.bind(this)),
   });
 
-  constructor() { }
+  @Input() set validUsername(value: boolean) {
+    this._validUsername = value;
+    this.form.controls['username'].updateValueAndValidity({ emitEvent: true });
+  }
+  @Output() setUser = new EventEmitter<string>();
+  @Output() resetUser = new EventEmitter<string>();
+
+  constructor() {
+  }
 
   public validateUsername(control: AbstractControl) {
-    return  this.validUsername ? null : { validUsername: true };
+    return  this._validUsername ? null : { validUsername: true };
+  }
+
+  public reset() {
+    this.form.reset({ emitEvent: true });
+    this.resetUser.emit();
   }
 }
