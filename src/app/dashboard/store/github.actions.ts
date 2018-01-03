@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import {GithubUser} from '../../models/github-user.model';
+import {GithubUser} from '../models/github-user.model';
 
 export enum GithubActionTypes {
   LoadUser = '[Github] LoadUser',

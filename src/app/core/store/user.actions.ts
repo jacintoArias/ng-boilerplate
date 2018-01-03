@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Openid } from '@app/core';
+import { Openid } from 'app/core/index';
 
 export enum UserActionTypes {
   ProfileLoad = '[User] ProfileLoad',

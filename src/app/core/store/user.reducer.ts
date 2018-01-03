@@ -1,5 +1,5 @@
-import { Openid } from '@app/core';
-import { UserActions, UserActionTypes } from '../actions/user.actions';
+import { Openid } from 'app/core/index';
+import { UserActions, UserActionTypes } from './user.actions';
 
 export interface State {
   profile: Openid;

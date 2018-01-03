@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Store} from '@ngrx/store';
 
 import * as fromDashboard from '@app/dashboard/store';
-import * as Github from '@app/dashboard/store/actions/github.actions';
+import * as Github from '@app/dashboard/store/github.actions';
 import { GithubStatus, GithubUser } from '@app/dashboard/models/github-user.model';
 import {Observable} from 'rxjs/Observable';
 

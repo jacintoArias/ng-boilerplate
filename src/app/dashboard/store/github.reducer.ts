@@ -1,5 +1,5 @@
-import {GithubActions, GithubActionTypes} from '../actions/github.actions';
-import { GithubStatus, GithubUser } from '../../models/github-user.model';
+import {GithubActions, GithubActionTypes} from './github.actions';
+import { GithubStatus, GithubUser } from '../models/github-user.model';
 
 export interface State {
   user: GithubUser;

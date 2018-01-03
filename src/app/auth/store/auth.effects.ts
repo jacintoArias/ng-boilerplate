@@ -5,14 +5,14 @@ import { Effect, Actions } from '@ngrx/effects';
 import { tap, map, switchMap, catchError, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 
-import { Auth0Service } from '@app/auth/services/auth0.service';
+import { Auth0Service } from 'app/auth/services/auth0.service';
 import {
   AuthActionTypes,
   LoginHandle,
   LoginSuccess,
   Logout,
-} from '@app/auth/store/actions/auth.actions';
-import { ProfileLoad, ProfileRemove } from '@app/core/store/actions/user.actions';
+} from 'app/auth/store/auth.actions';
+import { ProfileLoad, ProfileRemove } from 'app/core/store/user.actions';
 
 @Injectable()
 export class AuthEffects {

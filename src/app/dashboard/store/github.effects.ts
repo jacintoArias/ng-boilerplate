@@ -7,9 +7,9 @@ import { tap, map, switchMap, catchError, mergeMap, take} from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { Action } from '@ngrx/store';
 
-import { GithubActionTypes, LoadUser, LoadUserError, LoadUserSuccess } from '../actions/github.actions';
-import { GithubApiService } from '@app/dashboard/services/github-api.service';
-import { GithubUser } from '@app/dashboard/models/github-user.model';
+import { GithubActionTypes, LoadUser, LoadUserError, LoadUserSuccess } from './github.actions';
+import { GithubApiService } from 'app/dashboard/services/github-api.service';
+import { GithubUser } from 'app/dashboard/models/github-user.model';
 
 @Injectable()
 export class GithubEffects {

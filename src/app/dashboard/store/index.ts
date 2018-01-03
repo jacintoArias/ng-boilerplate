@@ -1,10 +1,10 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 
 import * as fromRoot from '@app/core/store';
-import * as fromLayout from './reducers/layout.reducer';
-import * as fromGithub from './reducers/github.reducer';
+import * as fromLayout from './layout.reducer';
+import * as fromGithub from './github.reducer';
 
-import { GithubEffects } from './effects/github.effects';
+import { GithubEffects } from './github.effects';
 
 export interface DashboardState {
   layout: fromLayout.State;

@@ -1,8 +1,8 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 
 import * as fromRoot from '@app/core/store';
-import * as fromAuth from './reducers/auth.reducer';
-import { AuthEffects } from './effects/auth.effects';
+import * as fromAuth from './auth.reducer';
+import { AuthEffects } from './auth.effects';
 
 export interface AuthState {
   status: fromAuth.State;
