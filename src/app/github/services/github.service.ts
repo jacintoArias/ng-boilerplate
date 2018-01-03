@@ -27,6 +27,6 @@ export class GithubService {
   }
 
   public getStatus(): Observable<GithubStatus> {
-    return this.store.select(fromGithub.getGithubStatus);
+    return this.store.select(fromGithub.selectGithubStatus);
   }
 }

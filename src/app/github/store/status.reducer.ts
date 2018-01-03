@@ -1,37 +1,25 @@
 import {GithubActions, GithubActionTypes} from './github.actions';
-import { GithubStatus, GithubUser } from '../models/github-user.model';
+import { GithubStatus } from '@app/github';
 
-export interface State {
-  user: GithubUser;
-  status: GithubStatus;
+export interface State extends GithubStatus {
 }
 
 const initialState: State = {
-  user: null,
-  status: {
-    userIsValid: true,
-  }
+  userIsValid: true,
 };
 
 export function reducer(state = initialState, action: GithubActions): State {
   switch (action.type) {
 
     case GithubActionTypes.LoadUser:
-      return initialState;
-
     case GithubActionTypes.LoadUserSuccess:
       return {
-        ...state,
-        user: action.payload,
+        userIsValid: true,
       };
 
     case GithubActionTypes.LoadUserError:
       return {
-        ...initialState,
-        status: {
-          ...state.status,
           userIsValid: false,
-        }
       };
 
     case GithubActionTypes.RemoveUser:
@@ -42,5 +30,3 @@ export function reducer(state = initialState, action: GithubActions): State {
   }
 }
 
-export const getUser = (state: State) => state.user;
-export const getStatus = (state: State) => state.status;

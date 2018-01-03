@@ -8,9 +8,11 @@ import { GithubUser } from '@app/github/models/github-user.model';
       <mat-card-header>
         <div mat-card-avatar [ngStyle]="setAvatar()"></div>
         <mat-card-title>{{ githubUser.name }}</mat-card-title>
+        <mat-card-subtitle>{{ githubUser.login }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <p>
+          Github profile.
         </p>
       </mat-card-content>
     </mat-card>

@@ -1,12 +1,14 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 
 import * as fromRoot from '@app/core/store';
-import * as fromGithub from '../../github/store/github.reducer';
+import * as fromData from './data.reducer';
+import * as fromStatus from './status.reducer';
 
 import { GithubEffects } from './github.effects';
 
 export interface GithubState {
-  github: fromGithub.State;
+  data: fromData.State;
+  status: fromStatus.State;
 }
 
 export interface State extends fromRoot.State {
@@ -14,27 +16,29 @@ export interface State extends fromRoot.State {
 }
 
 export const reducers = {
-  github: fromGithub.reducer,
+  data: fromData.reducer,
+  status: fromStatus.reducer,
 };
 
 export const effects = [GithubEffects];
 
-
-// Dashboard root
+// Github root
 export const selectGithubState = createFeatureSelector<GithubState>('github');
 
-// Github
-export const selectGithubGithubState = createSelector(
+// Data
+export const selectGithubData = createSelector(
   selectGithubState,
-  (state: GithubState) => state.github
+  (state: GithubState) => state.data
 );
 
 export const getGithubUser = createSelector(
-  selectGithubGithubState,
-  fromGithub.getUser
+  selectGithubData,
+  fromData.getUser
 );
 
-export const getGithubStatus = createSelector(
-  selectGithubGithubState,
-  fromGithub.getStatus
+// Status
+export const selectGithubStatus = createSelector(
+  selectGithubState,
+  (state: GithubState) => state.status
 );
+
