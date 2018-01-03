@@ -8,8 +8,8 @@ import { of } from 'rxjs/observable/of';
 import { Action } from '@ngrx/store';
 
 import { GithubActionTypes, LoadUser, LoadUserError, LoadUserSuccess } from './github.actions';
-import { GithubApiService } from 'app/dashboard/services/github-api.service';
-import { GithubUser } from 'app/dashboard/models/github-user.model';
+import { GithubApiService } from 'app/github/services/github-api.service';
+import { GithubUser } from 'app/github/models/github-user.model';
 
 @Injectable()
 export class GithubEffects {

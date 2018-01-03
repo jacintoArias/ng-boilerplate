@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import {Store} from '@ngrx/store';
-
-import * as fromDashboard from '@app/dashboard/store';
-import * as Github from '@app/dashboard/store/github.actions';
-import { GithubStatus, GithubUser } from '@app/dashboard/models/github-user.model';
 import {Observable} from 'rxjs/Observable';
+
+import * as fromGithub from '../store';
+import * as Github from '../store/github.actions';
+import { GithubStatus, GithubUser } from '../models/github-user.model';
 
 @Injectable()
 export class GithubService {
 
   constructor(
-    private store: Store<fromDashboard.State>,
+    private store: Store<fromGithub.State>,
   ) { }
 
   public loadUser(username: string) {
@@ -23,10 +23,10 @@ export class GithubService {
 
 
   public getUser(): Observable<GithubUser> {
-    return this.store.select(fromDashboard.getGithubUser);
+    return this.store.select(fromGithub.getGithubUser);
   }
 
   public getStatus(): Observable<GithubStatus> {
-    return this.store.select(fromDashboard.getGithubStatus);
+    return this.store.select(fromGithub.getGithubStatus);
   }
 }

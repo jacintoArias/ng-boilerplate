@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { UserService } from '@app/core/';
-import { GithubService } from '@app/dashboard/services/github.service';
+import { GithubService } from '@app/github/services/github.service';
 import { Openid } from '@app/core';
-import { GithubStatus, GithubUser } from '@app/dashboard/models/github-user.model';
+import { GithubStatus, GithubUser } from '@app/github/models/github-user.model';
 
 @Component({
   selector: 'app-home',
