@@ -26,7 +26,7 @@ import { FormGroup, FormControl, AbstractControl, AsyncValidatorFn } from '@angu
                       color="primary"
                       [disabled]="form.pristine"
                       (click)="reset()" >
-                Reset
+                Remove
               </button>
             </div>
           </form>
