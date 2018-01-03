@@ -40,7 +40,7 @@ export class GithubUserInfoComponent implements OnInit {
   ngOnInit() {
   }
 
-  private setAvatar(picture) {
+  public setAvatar(picture) {
     return {
       'background-image': `url('${this.githubUser.avatar_url}')`,
       'background-size': 'cover',

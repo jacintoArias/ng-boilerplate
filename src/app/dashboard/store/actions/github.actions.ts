@@ -5,6 +5,7 @@ export enum GithubActionTypes {
   LoadUser = '[Github] LoadUser',
   LoadUserSuccess = '[Github] LoadUserSuccess',
   LoadUserError = '[Github] LoadUserError',
+  RemoveUser = '[Github] RemoveUser',
 }
 
 export class LoadUser implements Action {
@@ -25,8 +26,14 @@ export class LoadUserError implements Action {
   constructor(public payload: string) {}
 }
 
+export class RemoveUser implements Action {
+  readonly type = GithubActionTypes.RemoveUser;
+
+}
+
 export type GithubActions =
   LoadUser |
   LoadUserSuccess |
-  LoadUserError;
+  LoadUserError |
+  RemoveUser;
 

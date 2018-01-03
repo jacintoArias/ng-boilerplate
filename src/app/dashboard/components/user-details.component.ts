@@ -26,7 +26,7 @@ export class UserDetailsComponent {
 
   constructor() { }
 
-  private setAvatar(picture) {
+  public setAvatar() {
     return {
       'background-image': `url('${this.profile.picture}')`,
       'background-size': 'cover',

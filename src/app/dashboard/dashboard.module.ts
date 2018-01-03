@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from '../shared/shared.module';
 
@@ -25,6 +26,7 @@ import { GithubProfileSetterComponent } from './components/github-profile-setter
   imports: [
     CommonModule,
     SharedModule,
+    ReactiveFormsModule,
     DashboardRoutingModule,
     StoreModule.forFeature('dashboard', reducers),
     EffectsModule.forFeature(effects),

@@ -1,12 +1,16 @@
 import {GithubActions, GithubActionTypes} from '../actions/github.actions';
-import {GithubUser} from '../../models/github-user.model';
+import { GithubStatus, GithubUser } from '../../models/github-user.model';
 
 export interface State {
   user: GithubUser;
+  status: GithubStatus;
 }
 
 const initialState: State = {
   user: null,
+  status: {
+    userIsValid: true,
+  }
 };
 
 export function reducer(state = initialState, action: GithubActions): State {
@@ -21,9 +25,22 @@ export function reducer(state = initialState, action: GithubActions): State {
         user: action.payload,
       };
 
+    case GithubActionTypes.LoadUserError:
+      return {
+        ...initialState,
+        status: {
+          ...state.status,
+          userIsValid: false,
+        }
+      };
+
+    case GithubActionTypes.RemoveUser:
+      return initialState;
+
     default:
       return state;
   }
 }
 
 export const getUser = (state: State) => state.user;
+export const getStatus = (state: State) => state.status;

@@ -31,3 +31,7 @@ export interface GithubUser {
   created_at: string;
   updated_at: string;
 };
+
+export interface GithubStatus {
+  userIsValid: boolean;
+}

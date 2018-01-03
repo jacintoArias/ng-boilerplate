@@ -48,3 +48,7 @@ export const getGithubUser = createSelector(
   fromGithub.getUser
 );
 
+export const getGithubStatus = createSelector(
+  selectDashboardGithubState,
+  fromGithub.getStatus
+);
