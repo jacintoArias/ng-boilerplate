@@ -10,22 +10,21 @@ import { FormGroup, FormControl, AbstractControl, AsyncValidatorFn } from '@angu
         <mat-card-content>
           <form [formGroup]="form">
             <mat-form-field>
-              <input matInput formControlName="username" placeholder="github username" [value]="">
-              <mat-error *ngIf="!_validUsername">Github user not found</mat-error>
+              <input matInput formControlName="username" placeholder="github username" [value]="userSelected">
+              <mat-error *ngIf="!_userIsValid">Github user not found</mat-error>
             </mat-form-field>
             <div>
               <button mat-raised-button
                       type="submit"
                       color="primary"
                       [disabled]="form.pristine"
-                      (click)="setUser.emit(form.value)" >
+                      (click)="setUser.emit(form.value)">
                 Set
               </button>
               <button mat-raised-button
                       type="button"
                       color="primary"
-                      [disabled]="form.pristine"
-                      (click)="reset()" >
+                      (click)="reset()">
                 Remove
               </button>
             </div>
@@ -38,13 +37,14 @@ import { FormGroup, FormControl, AbstractControl, AsyncValidatorFn } from '@angu
 })
 export class GithubProfileSetterComponent {
 
-  _validUsername: boolean;
+  _userIsValid: boolean;
   form: FormGroup = new FormGroup({
     username: new FormControl('', this.validateUsername.bind(this)),
   });
 
-  @Input() set validUsername(value: boolean) {
-    this._validUsername = value;
+  @Input() userSelected = '';
+  @Input() set userIsValid(value: boolean) {
+    this._userIsValid = value;
     this.form.controls['username'].updateValueAndValidity({ emitEvent: true });
   }
   @Output() setUser = new EventEmitter<string>();
@@ -54,7 +54,7 @@ export class GithubProfileSetterComponent {
   }
 
   public validateUsername(control: AbstractControl) {
-    return  this._validUsername ? null : { validUsername: true };
+    return  this._userIsValid ? null : { validUsername: true };
   }
 
   public reset() {

@@ -13,6 +13,8 @@ export function reducer(state = initialState, action: GithubActions): State {
   switch (action.type) {
 
     case GithubActionTypes.LoadUser:
+    case GithubActionTypes.LoadUserError:
+    case GithubActionTypes.RemoveUser:
       return initialState;
 
     case GithubActionTypes.LoadUserSuccess:
@@ -20,10 +22,6 @@ export function reducer(state = initialState, action: GithubActions): State {
         ...state,
         user: action.payload,
       };
-
-    case GithubActionTypes.LoadUserError:
-    case GithubActionTypes.RemoveUser:
-      return initialState;
 
     default:
       return state;

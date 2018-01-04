@@ -34,4 +34,5 @@ export interface GithubUser {
 
 export interface GithubStatus {
   userIsValid: boolean;
+  userSelected: string;
 }

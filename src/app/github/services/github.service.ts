@@ -13,8 +13,12 @@ export class GithubService {
     private store: Store<fromGithub.State>,
   ) { }
 
-  public loadUser(username: string) {
-   this.store.dispatch(new Github.LoadUser(username));
+  public selectUser(username: string) {
+    this.store.dispatch(new Github.SelectUser(username));
+  }
+
+  public loadUser() {
+   this.store.dispatch(new Github.LoadUser());
   }
 
   public removeUser() {
@@ -22,7 +26,7 @@ export class GithubService {
   }
 
 
-  public getUser(): Observable<GithubUser> {
+  public getUserData(): Observable<GithubUser> {
     return this.store.select(fromGithub.getGithubUser);
   }
 
