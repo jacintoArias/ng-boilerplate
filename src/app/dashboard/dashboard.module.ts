@@ -5,7 +5,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '@app/shared';
 
 import { LayoutService } from './services/layout.service';
 import { DashboardComponent } from './containers/dashboard.component';
