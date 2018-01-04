@@ -11,7 +11,7 @@ import { GithubModule } from '@app/github';
 import { UserService } from './services/user.service';
 import { environment } from '@env/environment';
 
-import { reducers, metaReducers, effects } from './store';
+import { reducers, metaReducers } from './store';
 
 @NgModule({
   imports: [
@@ -20,7 +20,7 @@ import { reducers, metaReducers, effects } from './store';
     HttpClientModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot(effects),
+    EffectsModule.forRoot([]),
     AuthModule.forRoot(),
     GithubModule.forRoot(),
   ],

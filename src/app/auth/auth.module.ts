@@ -9,7 +9,8 @@ import { AuthService } from './services/auth.service';
 import { Auth0Service } from './services/auth0.service';
 import { TokenService } from './services/token.service';
 import { AuthGuard } from './guards/auth.guard';
-import { reducers, effects } from './store/';
+import { AuthEffects } from './store/auth.effects';
+import { reducers } from './store/';
 
 
 export function jwtOptionsFactory(tokenService) {
@@ -53,7 +54,7 @@ export class AuthModule {
       }
     }),
     StoreModule.forFeature('auth', reducers),
-    EffectsModule.forFeature(effects),
+    EffectsModule.forFeature([AuthEffects]),
   ],
   declarations: []
 })

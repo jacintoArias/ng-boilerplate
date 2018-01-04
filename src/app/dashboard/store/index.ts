@@ -16,9 +16,6 @@ export const reducers = {
   layout: fromLayout.reducer,
 };
 
-export const effects = [];
-
-
 // Dashboard root
 export const selectDashboardState = createFeatureSelector<DashboardState>('dashboard');
 

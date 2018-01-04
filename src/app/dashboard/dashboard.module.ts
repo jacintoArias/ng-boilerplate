@@ -16,7 +16,7 @@ import { ToolbarComponent } from './components/toolbar.component';
 import { ToolbarButtonComponent } from './components/toolbar-button.component';
 import { UserDetailsComponent } from './components/user-details.component';
 
-import { reducers, effects } from './store/';
+import { reducers } from './store/';
 import { GithubApiService } from '@app/github/services/github-api.service';
 import { GithubService } from '@app/github/services/github.service';
 import { GithubUserInfoComponent } from './components/github-user-info.component';
@@ -29,7 +29,7 @@ import { GithubProfileSetterComponent } from './components/github-profile-setter
     ReactiveFormsModule,
     DashboardRoutingModule,
     StoreModule.forFeature('dashboard', reducers),
-    EffectsModule.forFeature(effects),
+    EffectsModule.forFeature([]),
   ],
   declarations: [
     DashboardComponent,

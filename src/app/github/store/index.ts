@@ -4,8 +4,6 @@ import * as fromRoot from '@app/core/store';
 import * as fromData from './data.reducer';
 import * as fromStatus from './status.reducer';
 
-import { GithubEffects } from './github.effects';
-
 export interface GithubState {
   data: fromData.State;
   status: fromStatus.State;
@@ -19,8 +17,6 @@ export const reducers = {
   data: fromData.reducer,
   status: fromStatus.reducer,
 };
-
-export const effects = [GithubEffects];
 
 // Github root
 export const selectGithubState = createFeatureSelector<GithubState>('github');

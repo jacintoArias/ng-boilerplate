@@ -37,8 +37,6 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
   ? [logger, storeFreeze, localStorageSyncReducer]
   : [localStorageSyncReducer];
 
-export const effects = [];
-
 
 export const selectUserState = createFeatureSelector<fromUser.State>('user');
 

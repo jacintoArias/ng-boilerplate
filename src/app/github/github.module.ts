@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { GithubService } from '@app/github/services/github.service';
-import { GithubApiService } from '@app/github/services/github-api.service';
-import { reducers, effects } from './store/';
+import { GithubService } from './services/github.service';
+import { GithubApiService } from './services/github-api.service';
+import { GithubEffects } from './store/github.effects';
+import { reducers } from './store/';
 
 @NgModule({
   imports: [
@@ -29,7 +30,7 @@ export class GithubModule {
   imports: [
     CommonModule,
     StoreModule.forFeature('github', reducers),
-    EffectsModule.forFeature(effects),
+    EffectsModule.forFeature([GithubEffects]),
   ],
   declarations: []
 })
