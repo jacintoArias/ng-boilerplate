@@ -1,5 +1,7 @@
 # jarias's NgBoilerplate
 
+## WIP! I'm actively adding lots of contents without apparent order from all my project in order to create a resusable codebase, expect changes!
+
 This is intented to be a very opinionated Angular app boilerplate from which I quickstart most of my project. It is biased towards my own personal preference and opinions which are in fact ~~stolen~~ inspired by many other experienced and awesome developers.
 
 This is still an ongoing work, I will update this readme with further information once I feel it is stable enough!
