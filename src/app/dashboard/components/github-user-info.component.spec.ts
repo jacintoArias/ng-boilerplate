@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { genGithubUserMock } from '@app/github';
 
-describe('TestComponent', () => {
+describe('GithubUserComponent', () => {
   let comp: GithubUserInfoComponent;
   let fix: ComponentFixture<GithubUserInfoComponent>;
   let deb: DebugElement;

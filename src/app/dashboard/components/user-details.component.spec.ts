@@ -6,7 +6,7 @@ import { generateMockOpenId } from '@app/core';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-describe('TestComponent', () => {
+describe('UserDetailsComponent', () => {
   let comp: UserDetailsComponent;
   let fix: ComponentFixture<UserDetailsComponent>;
   let deb: DebugElement;
