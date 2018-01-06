@@ -4,7 +4,7 @@ import { Openid } from '@app/core';
 @Component({
   selector: 'app-user-details',
   template: `
-    <mat-card>
+    <mat-card *ngIf="profile; else notfoundTemplate">
       <mat-card-header>
         <div mat-card-avatar [ngStyle]="setAvatar()"></div>
         <mat-card-title>{{ profile.nickname }}</mat-card-title>
@@ -16,6 +16,20 @@ import { Openid } from '@app/core';
         </p>
       </mat-card-content>
     </mat-card>
+
+    <ng-template #notfoundTemplate>
+      <mat-card>
+        <mat-card-header>
+          <div mat-card-avatar></div>
+          <mat-card-title>-</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{ errorMessage }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </ng-template>
   `,
   styles: [`
   `]
@@ -23,6 +37,8 @@ import { Openid } from '@app/core';
 export class UserDetailsComponent {
 
   @Input() profile: Openid;
+
+  errorMessage = 'Error Fetching the user profile.';
 
   constructor() { }
 
