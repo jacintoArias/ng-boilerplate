@@ -30,9 +30,44 @@ export interface GithubUser {
   following: number;
   created_at: string;
   updated_at: string;
-};
+}
 
 export interface GithubStatus {
   userIsValid: boolean;
   userSelected: string;
+}
+
+export function genGithubUserMock(): GithubUser {
+  return {
+    login: 'mock',
+    id: 1234,
+    avatar_url: 'http://github.com',
+    gravatar_id: '',
+    url: 'http://github.com',
+    html_url: 'http://github.com',
+    followers_url: 'http://github.com',
+    following_url: 'http://github.com',
+  gists_url: 'http://github.com',
+  starred_url: 'http://github.com',
+  subscriptions_url: 'http://github.com',
+  organizations_url: 'http://github.com',
+  repos_url: 'http://github.com',
+  events_url: 'http://github.com',
+  received_events_url: 'http://github.com',
+  type: 'user',
+  site_admin: false,
+  name: 'Mock McMock',
+  company: 'Mockers SL',
+  blog: '',
+  location: '',
+  email: 'mock@example.com',
+  hireable: false,
+  bio: '',
+  public_repos: 3,
+  public_gists: 4,
+  followers: 5,
+  following: 8,
+  created_at: '',
+  updated_at: '',
+};
 }

@@ -25,7 +25,7 @@ import { GithubUser } from '@app/github/models/github-user.model';
           </mat-card-header>
           <mat-card-content>
             <p>
-              No github profile set!
+             {{ errorMessage }}
             </p>
           </mat-card-content>
       </mat-card>
@@ -36,6 +36,8 @@ import { GithubUser } from '@app/github/models/github-user.model';
 export class GithubUserInfoComponent implements OnInit {
 
   @Input() githubUser: GithubUser;
+
+  errorMessage = 'No github profile set!';
 
   constructor() { }
 
