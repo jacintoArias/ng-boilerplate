@@ -12,10 +12,10 @@ import { GithubUserStatus, GithubUser } from '@app/github/models/github-user.mod
   template: `
     <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="10px" fxLayoutWrap>
       <app-user-details [profile]="profile$ | async"></app-user-details>
-      <app-github-profile-setter (setUser)="setGithubUser($event)"
-                                 (resetUser)="resetGithubUser()"
-                                 [githubUserStatus]="githubUserStatus$ | async">
-      </app-github-profile-setter>
+      <app-github-user-setter (setUser)="setGithubUser($event)"
+                              (resetUser)="resetGithubUser()"
+                              [githubUserStatus]="githubUserStatus$ | async">
+      </app-github-user-setter>
       <app-github-user-info [githubUser]="(githubUser$ | async)"></app-github-user-info>
     </div>
   `,
