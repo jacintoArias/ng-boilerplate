@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { UserService } from '@app/core/';
 import { GithubService } from '@app/github/services/github.service';
 import { Openid } from '@app/core';
-import { GithubStatus, GithubUser } from '@app/github/models/github-user.model';
+import { GithubUserStatus, GithubUser } from '@app/github/models/github-user.model';
 
 @Component({
   selector: 'app-home',
@@ -14,8 +14,7 @@ import { GithubStatus, GithubUser } from '@app/github/models/github-user.model';
       <app-user-details [profile]="profile$ | async"></app-user-details>
       <app-github-profile-setter (setUser)="setGithubUser($event)"
                                  (resetUser)="resetGithubUser()"
-                                 [userIsValid]="(githubStatus$ | async).userIsValid"
-                                 [userSelected]="(githubStatus$ | async).userSelected">
+                                 [githubUserStatus]="githubUserStatus$ | async">
       </app-github-profile-setter>
       <app-github-user-info [githubUser]="(githubUser$ | async)"></app-github-user-info>
     </div>
@@ -26,7 +25,7 @@ export class HomeComponent implements OnInit {
 
   profile$: Observable<Openid>;
   githubUser$: Observable<GithubUser>;
-  githubStatus$: Observable<GithubStatus>;
+  githubUserStatus$: Observable<GithubUserStatus>;
 
   constructor(
     private userService: UserService,
@@ -34,7 +33,7 @@ export class HomeComponent implements OnInit {
   ) {
     this.profile$ = this.userService.getProfile();
     this.githubUser$ = this.githubService.getUserData();
-    this.githubStatus$ = this.githubService.getStatus();
+    this.githubUserStatus$ = this.githubService.getUserStatus();
   }
 
   ngOnInit(): void {
@@ -42,7 +41,7 @@ export class HomeComponent implements OnInit {
   }
 
   public setGithubUser(event) {
-    this.githubService.selectUser(event.username);
+    this.githubService.selectUser(event.user);
   }
 
   public resetGithubUser() {

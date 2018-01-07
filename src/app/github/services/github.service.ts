@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 
 import * as fromGithub from '../store';
 import * as Github from '../store/github.actions';
-import { GithubStatus, GithubUser } from '../models/github-user.model';
+import { GithubUserStatus, GithubUser } from '../models/github-user.model';
 
 @Injectable()
 export class GithubService {
@@ -13,16 +13,16 @@ export class GithubService {
     private store: Store<fromGithub.State>,
   ) { }
 
-  public selectUser(username: string) {
-    this.store.dispatch(new Github.SelectUser(username));
+  public selectUser(user: string) {
+    this.store.dispatch(new Github.UserSelect(user));
   }
 
   public loadUser() {
-   this.store.dispatch(new Github.LoadUser());
+   this.store.dispatch(new Github.UserLoad());
   }
 
   public removeUser() {
-    this.store.dispatch(new Github.RemoveUser());
+    this.store.dispatch(new Github.UserRemove());
   }
 
 
@@ -30,7 +30,7 @@ export class GithubService {
     return this.store.select(fromGithub.getGithubUser);
   }
 
-  public getStatus(): Observable<GithubStatus> {
-    return this.store.select(fromGithub.selectGithubStatus);
+  public getUserStatus(): Observable<GithubUserStatus> {
+    return this.store.select(fromGithub.selectGithubUserStatus);
   }
 }

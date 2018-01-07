@@ -2,45 +2,45 @@ import { Action } from '@ngrx/store';
 import {GithubUser} from '../models/github-user.model';
 
 export enum GithubActionTypes {
-  SelectUser = '[Github] SelectUser',
-  LoadUser = '[Github] LoadUser',
-  LoadUserSuccess = '[Github] LoadUserSuccess',
-  LoadUserError = '[Github] LoadUserError',
-  RemoveUser = '[Github] RemoveUser',
+  UserSelect = '[Github] UserSelect',
+  UserLoad = '[Github] UserLoad',
+  UserLoadSuccess = '[Github] UserLoadSuccess',
+  UserLoadError = '[Github] UserLoadError',
+  UserRemove = '[Github] UserRemove',
 }
 
-export class SelectUser implements Action {
-  readonly type = GithubActionTypes.SelectUser;
+export class UserSelect implements Action {
+  readonly type = GithubActionTypes.UserSelect;
 
   constructor(public payload: string) {}
 }
 
-export class LoadUser implements Action {
-  readonly type = GithubActionTypes.LoadUser;
+export class UserLoad implements Action {
+  readonly type = GithubActionTypes.UserLoad;
 
 }
 
-export class LoadUserSuccess implements Action {
-  readonly type = GithubActionTypes.LoadUserSuccess;
+export class UserLoadSuccess implements Action {
+  readonly type = GithubActionTypes.UserLoadSuccess;
 
   constructor(public payload: GithubUser) {}
 }
 
-export class LoadUserError implements Action {
-  readonly type = GithubActionTypes.LoadUserError;
+export class UserLoadError implements Action {
+  readonly type = GithubActionTypes.UserLoadError;
 
   constructor(public payload: string) {}
 }
 
-export class RemoveUser implements Action {
-  readonly type = GithubActionTypes.RemoveUser;
+export class UserRemove implements Action {
+  readonly type = GithubActionTypes.UserRemove;
 
 }
 
 export type GithubActions =
-  SelectUser |
-  LoadUser |
-  LoadUserSuccess |
-  LoadUserError |
-  RemoveUser;
+  UserSelect |
+  UserLoad |
+  UserLoadSuccess |
+  UserLoadError |
+  UserRemove;
 

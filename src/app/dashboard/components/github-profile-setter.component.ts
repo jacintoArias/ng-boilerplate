@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormGroup, FormControl, AbstractControl, AsyncValidatorFn } from '@angular/forms';
+import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
+import { getGithubUserStatusInit, GithubUserStatus } from '@app/github';
 
 @Component({
   selector: 'app-github-profile-setter',
@@ -10,8 +11,8 @@ import { FormGroup, FormControl, AbstractControl, AsyncValidatorFn } from '@angu
         <mat-card-content>
           <form [formGroup]="form">
             <mat-form-field>
-              <input matInput formControlName="username" placeholder="github username" [value]="userSelected">
-              <mat-error *ngIf="!_userIsValid">Github user not found</mat-error>
+              <input matInput formControlName="user" placeholder="github username" >
+              <mat-error *ngIf="form.invalid">Github user not found</mat-error>
             </mat-form-field>
             <div>
               <button mat-raised-button
@@ -37,28 +38,32 @@ import { FormGroup, FormControl, AbstractControl, AsyncValidatorFn } from '@angu
 })
 export class GithubProfileSetterComponent {
 
-  _userIsValid: boolean;
-  form: FormGroup = new FormGroup({
-    username: new FormControl('', this.validateUsername.bind(this)),
-  });
+  form: FormGroup;
+  _status: GithubUserStatus = getGithubUserStatusInit();
 
-  @Input() userSelected = '';
-  @Input() set userIsValid(value: boolean) {
-    this._userIsValid = value;
-    this.form.controls['username'].updateValueAndValidity({ emitEvent: true });
+  // Push validator info through the form when value changes
+  @Input() set githubUserStatus(value: GithubUserStatus) {
+    this._status = value;
+    this.form.patchValue(value);
+    Object.keys(this.form.controls).forEach(control =>
+      this.form.controls[control].markAsTouched()
+    );
   }
   @Output() setUser = new EventEmitter<string>();
   @Output() resetUser = new EventEmitter<string>();
 
   constructor() {
+    this.form = new FormGroup({
+      user: new FormControl('', this.validateUsername.bind(this)),
+    });
   }
 
   public validateUsername(control: AbstractControl) {
-    return  this._userIsValid ? null : { validUsername: true };
+    return  this._status.userValid ? null : { validUsername: true };
   }
 
   public reset() {
-    this.form.reset({ emitEvent: true });
+    this.form.reset();
     this.resetUser.emit();
   }
 }

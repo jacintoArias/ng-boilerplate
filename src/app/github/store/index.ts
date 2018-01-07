@@ -33,8 +33,8 @@ export const getGithubUser = createSelector(
 );
 
 // Status
-export const selectGithubStatus = createSelector(
+export const selectGithubUserStatus = createSelector(
   selectGithubState,
-  (state: GithubState) => state.status
+  (state: GithubState) => state.status.user
 );
 

@@ -32,9 +32,18 @@ export interface GithubUser {
   updated_at: string;
 }
 
-export interface GithubStatus {
-  userIsValid: boolean;
-  userSelected: string;
+export interface GithubUserStatus {
+  user: string;
+  userValid: boolean;
+  userLoading: boolean;
+}
+
+export function getGithubUserStatusInit(): GithubUserStatus {
+  return {
+    user: '',
+    userValid: true,
+    userLoading: false,
+  };
 }
 
 export function genGithubUserMock(): GithubUser {

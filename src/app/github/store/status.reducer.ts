@@ -1,32 +1,67 @@
-import {GithubActions, GithubActionTypes} from './github.actions';
-import { GithubStatus } from '@app/github';
+import { GithubActions, GithubActionTypes } from './github.actions';
+import { GithubUserStatus } from '@app/github';
 
-export interface State extends GithubStatus {
+export interface State {
+  user: GithubUserStatus;
 }
 
+const initialUserState: GithubUserStatus = {
+  user: '',
+  userValid: true,
+  userLoading: false,
+};
+
 const initialState: State = {
-  userIsValid: true,
-  userSelected: '',
+  user: initialUserState,
 };
 
 export function reducer(state = initialState, action: GithubActions): State {
   switch (action.type) {
 
-    case GithubActionTypes.SelectUser:
+    case GithubActionTypes.UserSelect:
       return {
         ...state,
-        userIsValid: true,
-        userSelected: action.payload,
+        user: {
+          user: action.payload,
+          userValid: true,
+          userLoading: true,
+        }
       };
 
-    case GithubActionTypes.LoadUserError:
+    case GithubActionTypes.UserLoad:
       return {
         ...state,
-        userIsValid: false,
+        user: Object.assign( {},
+          state.user,
+          { userLoading: true },
+        )
       };
 
-    case GithubActionTypes.RemoveUser:
-      return initialState;
+    case GithubActionTypes.UserLoadSuccess:
+      return {
+        ...state,
+        user: Object.assign( {},
+          state.user,
+          { userValid: true,
+            userLoading: false, },
+        )
+      };
+
+    case GithubActionTypes.UserLoadError:
+      return {
+        ...state,
+        user: Object.assign( {},
+          state.user,
+          { userValid: false,
+            userLoading: false, },
+        ),
+      };
+
+    case GithubActionTypes.UserRemove:
+      return {
+        ...state,
+        user: initialUserState,
+      };
 
     default:
       return state;

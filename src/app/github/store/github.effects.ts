@@ -7,9 +7,9 @@ import { tap, map, switchMap, catchError, mergeMap, take, withLatestFrom, filter
 import { of } from 'rxjs/observable/of';
 import { Action, Store } from '@ngrx/store';
 
-import { GithubActionTypes, LoadUser, LoadUserError, LoadUserSuccess } from './github.actions';
+import { GithubActionTypes, UserLoad, UserLoadError, UserLoadSuccess } from './github.actions';
 import { GithubApiService } from '../services/github-api.service';
-import { GithubUser, GithubStatus } from '../models/github-user.model';
+import { GithubUser, GithubUserStatus } from '../models/github-user.model';
 import * as fromGithub from './';
 
 @Injectable()
@@ -23,26 +23,26 @@ export class GithubEffects {
   ) {}
 
   @Effect()
-  selectUser$: Observable<Action> = this.actions$
-    .ofType(GithubActionTypes.SelectUser)
+  userSelect$: Observable<Action> = this.actions$
+    .ofType(GithubActionTypes.UserSelect)
     .pipe(
-      map(() => new LoadUser())
+      map(() => new UserLoad())
     );
 
   @Effect()
-  loadUser$: Observable<Action> = this.actions$
-    .ofType(GithubActionTypes.LoadUser)
+  userLoad$: Observable<Action> = this.actions$
+    .ofType(GithubActionTypes.UserLoad)
     .pipe(
-      withLatestFrom(this.store.select(fromGithub.selectGithubStatus)),
+      withLatestFrom(this.store.select(fromGithub.selectGithubUserStatus)),
       map(([action, status]) => status),
-      filter(status => status.userSelected !== ''),
-      switchMap((status: GithubStatus) => {
+      filter(status => status.user !== ''),
+      switchMap((status: GithubUserStatus) => {
         return this.githubApi
-          .getUser(status.userSelected)
+          .getUser(status.user)
           .pipe(
             take(1),
-            map((user: GithubUser) => new LoadUserSuccess(user)),
-            catchError(err => of(new LoadUserError(err))),
+            map((user: GithubUser) => new UserLoadSuccess(user)),
+            catchError(err => of(new UserLoadError(err))),
           );
       }),
     );
