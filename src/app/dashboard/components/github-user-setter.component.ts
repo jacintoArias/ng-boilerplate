@@ -18,7 +18,7 @@ import { getGithubUserStatusInit, GithubUserStatus } from '@app/github';
               <button mat-raised-button
                       type="submit"
                       color="primary"
-                      [disabled]="form.pristine"
+                      [disabled]="!isSubmittable()"
                       (click)="setUser.emit(form.value)">
                 Set
               </button>
@@ -45,9 +45,10 @@ export class GithubUserSetterComponent {
   @Input() set githubUserStatus(value: GithubUserStatus) {
     this._status = value;
     this.form.patchValue(value);
-    Object.keys(this.form.controls).forEach(control =>
-      this.form.controls[control].markAsTouched()
-    );
+    Object.keys(this.form.controls).forEach(control => {
+      this.form.controls[control].updateValueAndValidity()
+      this.form.controls[control].markAsTouched();
+    });
   }
   @Output() setUser = new EventEmitter<string>();
   @Output() resetUser = new EventEmitter<string>();
@@ -59,11 +60,16 @@ export class GithubUserSetterComponent {
   }
 
   public validateUsername(control: AbstractControl) {
-    return  this._status.userValid ? null : { validUsername: true };
+    const userModified = this._status.user !== control.value;
+    return  this._status.userValid || userModified ? null : { validUsername: true };
   }
 
   public reset() {
     this.form.reset();
     this.resetUser.emit();
+  }
+
+  public isSubmittable(): boolean {
+    return this.form.value.user;
   }
 }
