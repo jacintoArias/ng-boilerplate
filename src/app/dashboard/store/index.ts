@@ -1,7 +1,7 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 
 import * as fromRoot from '@app/core/store';
-import * as fromLayout from './layout.reducer';
+import * as fromLayout from './reducers/layout.reducer';
 
 
 export interface DashboardState {

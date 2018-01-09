@@ -1,4 +1,4 @@
-import { LayoutActions, LayoutActionTypes } from './layout.actions';
+import { LayoutActions, LayoutActionTypes } from '../actions/layout.actions';
 
 export interface State {
   sidenav: boolean;

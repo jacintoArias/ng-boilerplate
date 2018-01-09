@@ -11,8 +11,8 @@ import {
   LoginHandle,
   LoginSuccess,
   Logout,
-} from 'app/auth/store/auth.actions';
-import { ProfileLoad, ProfileRemove } from 'app/core/store/user.actions';
+} from 'app/auth/store/actions/auth.actions';
+import { ProfileLoad, ProfileRemove } from 'app/core/store/actions/user.actions';
 
 @Injectable()
 export class AuthEffects {

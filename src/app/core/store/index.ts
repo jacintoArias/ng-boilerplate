@@ -9,7 +9,7 @@ import { environment } from '@env/environment';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { localStorageSync } from 'ngrx-store-localstorage';
 
-import * as fromUser from './user.reducer';
+import * as fromUser from './reducers/user.reducer';
 
 export interface State {
   user: fromUser.State;

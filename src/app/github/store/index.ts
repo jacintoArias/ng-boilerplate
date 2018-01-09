@@ -1,8 +1,8 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 
 import * as fromRoot from '@app/core/store';
-import * as fromData from './data.reducer';
-import * as fromStatus from './status.reducer';
+import * as fromData from './reducers/data.reducer';
+import * as fromStatus from './reducers/status.reducer';
 
 export interface GithubState {
   data: fromData.State;

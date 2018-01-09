@@ -5,7 +5,7 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { GithubService } from './services/github.service';
 import { GithubApiService } from './services/github-api.service';
-import { GithubEffects } from './store/github.effects';
+import { GithubEffects } from './store/effects/github.effects';
 import { reducers } from './store/';
 
 @NgModule({

@@ -3,7 +3,7 @@ import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
 
 import * as fromGithub from '../store';
-import * as Github from '../store/github.actions';
+import * as Github from '../store/actions/github.actions';
 import { GithubUserStatus, GithubUser } from '../models/github-user.model';
 
 @Injectable()

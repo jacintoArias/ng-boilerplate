@@ -1,4 +1,4 @@
-import { AuthActions, AuthActionTypes } from './auth.actions';
+import { AuthActions, AuthActionTypes } from '../actions/auth.actions';
 import { Tokens } from 'app/auth/models/tokens';
 
 export interface State {

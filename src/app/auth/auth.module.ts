@@ -9,7 +9,7 @@ import { AuthService } from './services/auth.service';
 import { Auth0Service } from './services/auth0.service';
 import { TokenService } from './services/token.service';
 import { AuthGuard } from './guards/auth.guard';
-import { AuthEffects } from './store/auth.effects';
+import { AuthEffects } from './store/effects/auth.effects';
 import { reducers } from './store/';
 
 

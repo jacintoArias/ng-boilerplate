@@ -7,10 +7,10 @@ import { tap, map, switchMap, catchError, mergeMap, take, withLatestFrom, filter
 import { of } from 'rxjs/observable/of';
 import { Action, Store } from '@ngrx/store';
 
-import { GithubActionTypes, UserLoad, UserLoadError, UserLoadSuccess } from './github.actions';
-import { GithubApiService } from '../services/github-api.service';
-import { GithubUser, GithubUserStatus } from '../models/github-user.model';
-import * as fromGithub from './';
+import { GithubActionTypes, UserLoad, UserLoadError, UserLoadSuccess } from '../actions/github.actions';
+import { GithubApiService } from '../../services/github-api.service';
+import { GithubUser, GithubUserStatus } from '../../models/github-user.model';
+import * as fromGithub from '../';
 
 @Injectable()
 export class GithubEffects {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import * as fromDashboard from '../store';
-import * as Layout from '../store/layout.actions';
+import * as Layout from '../store/actions/layout.actions';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
