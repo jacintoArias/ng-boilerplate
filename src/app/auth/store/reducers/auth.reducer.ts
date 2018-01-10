@@ -5,11 +5,14 @@ export interface State {
   tokens: Tokens;
 }
 
-const initialState: State = {
+export const initialState: State = {
   tokens: null,
 };
 
-export function reducer(state = initialState, action: AuthActions): State {
+export function reducer(
+  state = initialState,
+  action: AuthActions
+): State {
   switch (action.type) {
 
     case AuthActionTypes.LoginSucess:
