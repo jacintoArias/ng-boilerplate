@@ -6,7 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { AuthModule } from '@app/auth';
+import { AuthModule } from '@app/auth/';
 import { GithubModule } from '@app/github';
 import { environment } from '@env/environment';
 

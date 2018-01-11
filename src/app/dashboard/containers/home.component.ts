@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 
 import * as fromRoot from '@app/core/store';
 import * as fromAuth from '@app/auth/store';
+import { User } from '@app/auth/models';
 import { GithubService } from '@app/github/services/github.service';
-import { User } from '@app/core';
 import { GithubUserStatus, GithubUser } from '@app/github/models/github-user.model';
 
 @Component({

@@ -7,7 +7,7 @@ import { map, tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 import * as fromAuth from '../store';
-import { Tokens } from '@app/auth';
+import { Tokens } from '../models';
 
 @Injectable()
 export class AuthGuard implements CanActivate {

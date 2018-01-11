@@ -6,10 +6,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 import { reducers, effects } from './store';
-import { Auth0Service } from './services/auth0.service';
-import { TokenService } from '@app/auth/services/token.service';
-import { AuthGuard } from './guards/auth.guard';
-
+import { services, TokenService } from './services';
+import { guards } from './guards';
 import { environment } from '@env/environment';
 
 
@@ -33,11 +31,7 @@ export class AuthModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: RootAuthModule,
-      providers: [
-        Auth0Service,
-        AuthGuard,
-        TokenService,
-      ],
+      providers: [...services, ...guards],
     };
   }
 }
