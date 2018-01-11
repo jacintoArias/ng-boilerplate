@@ -41,7 +41,7 @@ describe('GithubUserSetterComponent', () => {
     expect(comp).toBeTruthy();
   });
 
-  it('should be empty, valid and not submittable when no status bound', () => {
+  it('should be empty, valid and not submittable when no tokens bound', () => {
      fix.detectChanges();
      testForm('', true, false);
   });

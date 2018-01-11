@@ -1,4 +1,4 @@
-import * as fromAuth from './auth.actions';
+import * as tokensActions from './tokens.actions';
 import { genTokensMock } from '@app/auth';
 
 describe('Auth Actions', () => {
@@ -6,10 +6,10 @@ describe('Auth Actions', () => {
   describe('Login Action', () => {
     describe('Login', () => {
       it('should create an action', () => {
-        const action = new fromAuth.Login();
+        const action = new tokensActions.Login();
 
         expect({ ...action }).toEqual({
-          type: fromAuth.AuthActionTypes.Login,
+          type: tokensActions.TokensActionTypes.Login,
         });
       });
     });
@@ -18,10 +18,10 @@ describe('Auth Actions', () => {
   describe('LoginHandle Action', () => {
     describe('LoginHandle', () => {
       it('should create an action', () => {
-        const action = new fromAuth.LoginHandle();
+        const action = new tokensActions.LoginHandle();
 
         expect({ ...action }).toEqual({
-          type: fromAuth.AuthActionTypes.LoginHandle,
+          type: tokensActions.TokensActionTypes.LoginHandle,
         });
       });
     });
@@ -31,10 +31,10 @@ describe('Auth Actions', () => {
     describe('LoginSuccess', () => {
       it('should create an action', () => {
         const payload = genTokensMock();
-        const action = new fromAuth.LoginSuccess(payload);
+        const action = new tokensActions.LoginSuccess(payload);
 
         expect({ ...action }).toEqual({
-          type: fromAuth.AuthActionTypes.LoginSucess,
+          type: tokensActions.TokensActionTypes.LoginSucess,
           payload
         });
       });
@@ -44,10 +44,10 @@ describe('Auth Actions', () => {
   describe('Logout Action', () => {
     describe('Logout', () => {
       it('should create an action', () => {
-        const action = new fromAuth.Logout();
+        const action = new tokensActions.Logout();
 
         expect({ ...action }).toEqual({
-          type: fromAuth.AuthActionTypes.Logout,
+          type: tokensActions.TokensActionTypes.Logout,
         });
       });
     });

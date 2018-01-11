@@ -1,7 +1,8 @@
 import { Action } from '@ngrx/store';
-import { Tokens } from 'app/auth/models/tokens';
 
-export enum AuthActionTypes {
+import { Tokens } from '../../models/tokens';
+
+export enum TokensActionTypes {
   Login = '[Auth] Login',
   LoginHandle = '[Auth] Login Handle',
   LoginSucess = '[Auth] Login Success',
@@ -9,24 +10,24 @@ export enum AuthActionTypes {
 }
 
 export class Login implements Action {
-  readonly type = AuthActionTypes.Login;
+  readonly type = TokensActionTypes.Login;
 }
 
 export class LoginHandle implements Action {
-  readonly type = AuthActionTypes.LoginHandle;
+  readonly type = TokensActionTypes.LoginHandle;
 }
 
 export class LoginSuccess implements Action {
-  readonly type = AuthActionTypes.LoginSucess;
+  readonly type = TokensActionTypes.LoginSucess;
 
   constructor(public payload: Tokens) {}
 }
 
 export class Logout implements Action {
-  readonly type = AuthActionTypes.Logout;
+  readonly type = TokensActionTypes.Logout;
 }
 
-export type AuthActions =
+export type TokensActions =
   Login |
   LoginHandle |
   LoginSuccess |

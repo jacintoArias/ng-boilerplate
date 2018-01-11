@@ -6,7 +6,7 @@ import { of } from 'rxjs/observable/of';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 import * as fromAuth from '../store';
-import * as Auth from '../store/actions/auth.actions';
+import * as Auth from '../store/actions/tokens.actions';
 
 import { Auth0Service } from './auth0.service';
 import { TokenService } from './token.service';

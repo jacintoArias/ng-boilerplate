@@ -10,7 +10,7 @@ import { UserService } from '@app/auth/services/user.service';
 import { Auth0Service } from './services/auth0.service';
 import { TokenService } from './services/token.service';
 import { AuthGuard } from './guards/auth.guard';
-import { AuthEffects } from './store/effects/auth.effects';
+import { TokensEffects } from './store/effects/tokens.effects';
 import { reducers } from './store/';
 
 
@@ -56,7 +56,7 @@ export class AuthModule {
       }
     }),
     StoreModule.forFeature('auth', reducers),
-    EffectsModule.forFeature([AuthEffects]),
+    EffectsModule.forFeature([TokensEffects]),
   ],
   declarations: []
 })

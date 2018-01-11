@@ -1,11 +1,11 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 
 import * as fromRoot from '@app/core/store';
-import * as fromAuth from './reducers/auth.reducer';
+import * as fromAuth from './reducers/tokens.reducer';
 import * as fromUser from './reducers/user.reducer';
 
 export interface AuthState {
-  status: fromAuth.State;
+  tokens: fromAuth.State;
   user: fromUser.State;
 }
 
@@ -14,20 +14,20 @@ export interface State extends fromRoot.State {
 }
 
 export const reducers = {
-  status: fromAuth.reducer,
+  tokens: fromAuth.reducer,
   user: fromUser.reducer
 };
 
 
 export const selectAuthState = createFeatureSelector<AuthState>('auth');
 
-export const selectAuthStatusState = createSelector(
+export const selectAuthTokensState = createSelector(
   selectAuthState,
-  (state: AuthState) => state.status
+  (state: AuthState) => state.tokens
 );
 
 export const getTokens = createSelector(
-  selectAuthStatusState,
+  selectAuthTokensState,
   fromAuth.getTokens
 );
 

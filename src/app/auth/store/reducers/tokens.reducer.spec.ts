@@ -1,9 +1,9 @@
-import * as fromAuth from './auth.reducer';
-import * as Auth from '../actions/auth.actions';
+import * as fromAuth from './tokens.reducer';
+import * as Auth from '../actions/tokens.actions';
 import { Tokens } from '../../models/tokens';
 import { genTokensMock } from '@app/auth';
 
-describe('AuthReducer', () => {
+describe('TokensReducer', () => {
    describe('Undefined Action', () => {
     it('should return the default state', () => {
      const { initialState } = fromAuth;

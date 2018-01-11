@@ -6,11 +6,11 @@ import { tap, map, switchMap, catchError, mergeMap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 
 import { Auth0Service } from 'app/auth/services/auth0.service';
-import * as Auth from 'app/auth/store/actions/auth.actions';
+import * as tokensActions from '../actions/tokens.actions';
 import { ProfileLoad, ProfileRemove } from 'app/core/store/actions/user.actions';
 
 @Injectable()
-export class AuthEffects {
+export class TokensEffects {
 
   constructor(
     private actions$: Actions,
@@ -20,33 +20,33 @@ export class AuthEffects {
 
   @Effect({ dispatch: false })
   login$ = this.actions$
-    .ofType(Auth.AuthActionTypes.Login)
+    .ofType(tokensActions.TokensActionTypes.Login)
     .pipe(
       tap(() => this.auth0Service.login())
     );
 
   @Effect()
   loginHandle$ = this.actions$
-    .ofType(Auth.AuthActionTypes.LoginHandle)
+    .ofType(tokensActions.TokensActionTypes.LoginHandle)
     .pipe(
-      switchMap((action: Auth.LoginHandle) => this.auth0Service.handleAuthentication()),
+      switchMap((action: tokensActions.LoginHandle) => this.auth0Service.handleAuthentication()),
       mergeMap((res) => [
-        new Auth.LoginSuccess(res.tokens),
+        new tokensActions.LoginSuccess(res.tokens),
         new ProfileLoad(res.profile),
       ]),
-      catchError( (err) => of(new Auth.Logout())),
+      catchError( (err) => of(new tokensActions.Logout())),
     );
 
   @Effect({ dispatch: false })
   loginSuccess$ = this.actions$
-    .ofType(Auth.AuthActionTypes.LoginSucess)
+    .ofType(tokensActions.TokensActionTypes.LoginSucess)
     .pipe(
       tap(() => this.router.navigate(['/']))
     );
 
   @Effect({ dispatch: false })
   logout$ = this.actions$
-    .ofType(Auth.AuthActionTypes.Logout)
+    .ofType(tokensActions.TokensActionTypes.Logout)
     .pipe(
       map(() => new ProfileRemove()),
       tap(() => this.auth0Service.login())

@@ -1,4 +1,4 @@
-import { AuthActions, AuthActionTypes } from '../actions/auth.actions';
+import { TokensActions, TokensActionTypes } from '../actions/tokens.actions';
 import { Tokens } from 'app/auth/models/tokens';
 
 export interface State {
@@ -11,17 +11,17 @@ export const initialState: State = {
 
 export function reducer(
   state = initialState,
-  action: AuthActions
+  action: TokensActions
 ): State {
   switch (action.type) {
 
-    case AuthActionTypes.LoginSucess:
+    case TokensActionTypes.LoginSucess:
       return {
         ...state,
         tokens: action.payload,
       };
 
-    case AuthActionTypes.Logout:
+    case TokensActionTypes.Logout:
       return initialState;
 
     default:
