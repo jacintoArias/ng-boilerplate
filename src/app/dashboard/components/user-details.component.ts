@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Openid } from '@app/core';
+import { User } from '@app/core';
 
 @Component({
   selector: 'app-user-details',
@@ -36,7 +36,7 @@ import { Openid } from '@app/core';
 })
 export class UserDetailsComponent {
 
-  @Input() profile: Openid;
+  @Input() profile: User;
 
   errorMessage = 'Error Fetching the user profile.';
 

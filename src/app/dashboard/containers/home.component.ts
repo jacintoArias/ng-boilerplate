@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { UserService } from '@app/core/';
 import { GithubService } from '@app/github/services/github.service';
-import { Openid } from '@app/core';
+import { User } from '@app/core';
 import { GithubUserStatus, GithubUser } from '@app/github/models/github-user.model';
 
 @Component({
@@ -23,7 +23,7 @@ import { GithubUserStatus, GithubUser } from '@app/github/models/github-user.mod
 })
 export class HomeComponent implements OnInit {
 
-  profile$: Observable<Openid>;
+  profile$: Observable<User>;
   githubUser$: Observable<GithubUser>;
   githubUserStatus$: Observable<GithubUserStatus>;
 

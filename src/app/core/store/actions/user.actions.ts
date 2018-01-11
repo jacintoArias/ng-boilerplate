@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Openid } from 'app/core/index';
+import { User } from 'app/core/index';
 
 export enum UserActionTypes {
   ProfileLoad = '[User] ProfileLoad',
@@ -9,7 +9,7 @@ export enum UserActionTypes {
 export class ProfileLoad implements Action {
   readonly type = UserActionTypes.ProfileLoad;
 
-  constructor(public payload: Openid) {}
+  constructor(public payload: User) {}
 }
 
 export class ProfileRemove implements Action {

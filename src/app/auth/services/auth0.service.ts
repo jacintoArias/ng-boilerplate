@@ -7,7 +7,7 @@ import 'rxjs/add/observable/bindNodeCallback';
 
 import * as auth0 from 'auth0-js';
 
-import { Openid } from '@app/core/';
+import { User } from '@app/core/';
 import { Tokens } from '../models/tokens';
 
 import { environment } from '@env/environment';
@@ -28,7 +28,7 @@ export class Auth0Service {
     scope: 'openid profile email'
   });
 
-  private static payload2profile(payload): Openid {
+  private static payload2profile(payload): User {
 
     // Add custom claims and getters
     const {
@@ -52,7 +52,7 @@ export class Auth0Service {
     this.auth0.authorize();
   }
 
-  public handleAuthentication(): Observable<{ tokens: Tokens, profile: Openid }> {
+  public handleAuthentication(): Observable<{ tokens: Tokens, profile: User }> {
     return Observable.bindNodeCallback((
       callback: (error: Error, authResult: {idToken, accessToken, idTokenPayload}) => void) =>
         this.auth0.parseHash(callback)

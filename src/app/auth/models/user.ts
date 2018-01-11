@@ -1,4 +1,4 @@
-export interface Openid {
+export interface User {
   'email': string;
   'email_verified': boolean;
   'name': string;
@@ -6,7 +6,7 @@ export interface Openid {
   'picture': string;
 }
 
-export function generateMockOpenId(): Openid {
+export function generateMockOpenId(): User {
   return {
     email: 'mock@example.com',
     email_verified: false,

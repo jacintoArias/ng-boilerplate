@@ -1,8 +1,8 @@
-import { Openid } from 'app/core/index';
+import { User } from 'app/core/index';
 import { UserActions, UserActionTypes } from '../../../core/store/actions/user.actions';
 
 export interface State {
-  profile: Openid;
+  profile: User;
 }
 
 const initialState: State = {
