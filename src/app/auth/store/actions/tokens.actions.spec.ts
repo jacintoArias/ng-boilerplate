@@ -1,5 +1,5 @@
 import * as tokensActions from './tokens.actions';
-import { genTokensMock } from '@app/auth';
+import { genTokensMock } from '../../models';
 
 describe('Auth Actions', () => {
 

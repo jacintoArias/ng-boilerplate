@@ -1,4 +1,4 @@
-import { TokensActions, TokensActionTypes } from '../actions/tokens.actions';
+import { TokensActions, TokensActionTypes } from '../actions';
 import { Tokens } from '../../models';
 
 export interface State {

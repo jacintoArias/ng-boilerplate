@@ -1,5 +1,5 @@
+import { UserActions, UserActionTypes } from '../actions';
 import { User } from '../../models';
-import { UserActions, UserActionTypes } from '../actions/user.actions';
 
 export interface State {
   profile: User;

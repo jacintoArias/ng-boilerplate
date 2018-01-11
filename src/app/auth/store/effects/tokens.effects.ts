@@ -7,7 +7,7 @@ import { of } from 'rxjs/observable/of';
 
 import { Auth0Service } from 'app/auth/services/auth0.service';
 import * as tokensActions from '../actions/tokens.actions';
-import { ProfileLoad, ProfileRemove } from 'app/auth/store/actions/user.actions';
+import * as userActions from '../actions/user.actions';
 
 @Injectable()
 export class TokensEffects {
@@ -32,7 +32,7 @@ export class TokensEffects {
       switchMap((action: tokensActions.LoginHandle) => this.auth0Service.handleAuthentication()),
       mergeMap((res) => [
         new tokensActions.LoginSuccess(res.tokens),
-        new ProfileLoad(res.profile),
+        new userActions.ProfileLoad(res.profile),
       ]),
       catchError( (err) => of(new tokensActions.Logout())),
     );
@@ -48,7 +48,7 @@ export class TokensEffects {
   logout$ = this.actions$
     .ofType(tokensActions.TokensActionTypes.Logout)
     .pipe(
-      map(() => new ProfileRemove()),
+      map(() => new userActions.ProfileRemove()),
       tap(() => this.auth0Service.login())
     );
 }

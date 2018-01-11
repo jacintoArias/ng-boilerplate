@@ -1,7 +1,6 @@
 import * as fromAuth from './tokens.reducer';
 import * as Auth from '../actions/tokens.actions';
-import { Tokens } from '../../models/tokens';
-import { genTokensMock } from '@app/auth';
+import { Tokens, genTokensMock } from '../../models/';
 
 describe('TokensReducer', () => {
    describe('Undefined Action', () => {

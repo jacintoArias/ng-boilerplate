@@ -4,8 +4,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { map, take } from 'rxjs/operators';
 
-import * as fromAuth from '../store/reducers/index';
-import { Tokens } from '../models/tokens';
+import * as fromAuth from '../store';
+import { Tokens } from '../models';
 
 /*
   This service is need to be injected as a dependency into
