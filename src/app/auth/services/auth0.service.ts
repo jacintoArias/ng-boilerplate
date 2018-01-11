@@ -7,8 +7,8 @@ import 'rxjs/add/observable/bindNodeCallback';
 
 import * as auth0 from 'auth0-js';
 
-import { User } from '@app/core/';
-import { Tokens } from '../models/tokens';
+import { User } from '../models';
+import { Tokens } from '../models';
 
 import { environment } from '@env/environment';
 

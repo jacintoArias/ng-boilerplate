@@ -1,5 +1,5 @@
 import { TokensActions, TokensActionTypes } from '../actions/tokens.actions';
-import { Tokens } from 'app/auth/models/tokens';
+import { Tokens } from '../../models';
 
 export interface State {
   tokens: Tokens;

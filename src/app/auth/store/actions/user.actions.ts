@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
-import { User } from 'app/core/index';
+
+import { User } from '../../models';
 
 export enum UserActionTypes {
   ProfileLoad = '[User] ProfileLoad',

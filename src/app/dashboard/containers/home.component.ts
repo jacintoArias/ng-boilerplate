@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import * as fromRoot from '@app/core/store';
+import * as fromRoot from '@app/core/store/reducers/index';
 import * as fromAuth from '@app/auth/store';
 import { User } from '@app/auth/models';
 import { GithubService } from '@app/github/services/github.service';

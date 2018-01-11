@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
-import * as fromRoot from '@app/core/store';
+import * as fromRoot from '@app/core/store/reducers/index';
 import * as fromAuth from '@app/auth/store';
 import { LayoutService } from '@app/dashboard/services/layout.service';
 

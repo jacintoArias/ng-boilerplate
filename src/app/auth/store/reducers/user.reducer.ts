@@ -1,4 +1,4 @@
-import { User } from 'app/core/index';
+import { User } from '../../models';
 import { UserActions, UserActionTypes } from '../actions/user.actions';
 
 export interface State {
