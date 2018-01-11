@@ -1,25 +1,31 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { tap } from 'rxjs/operators';
 
-import { AuthService } from '../services/auth.service';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
+import { map, tap } from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
+import * as fromAuth from '../store';
+import { Tokens } from '@app/auth';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
   constructor(
-    private authService: AuthService,
+    private store: Store<fromAuth.State>,
+    private jwt: JwtHelperService,
   ) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> {
-    return this.authService.isAuthenticated()
+    return this.store.select(fromAuth.getTokens)
       .pipe(
+        map( (tokens: Tokens) => !this.jwt.isTokenExpired(tokens.idToken) ),
         tap( authed => {
           if (!authed) {
-            this.authService.login();
+            this.store.dispatch(new fromAuth.Logout());
           }
         })
       );

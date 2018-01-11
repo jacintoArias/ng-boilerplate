@@ -1,7 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 
-import { AuthService } from '@app/auth';
+import { Store } from '@ngrx/store';
+
+import * as fromRoot from '@app/core/store';
+import * as fromAuth from '@app/auth/store';
 import { LayoutService } from '@app/dashboard/services/layout.service';
 
 @Component({
@@ -24,7 +26,7 @@ import { LayoutService } from '@app/dashboard/services/layout.service';
 export class DashboardComponent {
 
   constructor(
-    private authService: AuthService,
+    private store: Store<fromRoot.State>,
     private layoutService: LayoutService,
   ) {}
 
@@ -33,6 +35,6 @@ export class DashboardComponent {
   }
 
   logout() {
-    this.authService.logout();
+    this.store.dispatch(new fromAuth.Logout());
   }
 }

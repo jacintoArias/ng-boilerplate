@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from './auth/services/auth.service';
+import { Component } from '@angular/core';
+
+import { Store } from '@ngrx/store';
+
+import * as fromAuth from '@app/auth/store';
 
 @Component({
   selector: 'app-callback',
   template: ``,
   styles: []
 })
-export class CallbackComponent implements OnInit {
+export class CallbackComponent {
 
-  constructor(private authService: AuthService) {
-    this.authService.handleAuthentication();
-  }
-
-  ngOnInit() {
+  constructor(private store: Store<fromAuth.State>) {
+    this.store.dispatch(new fromAuth.LoginHandle());
   }
 
 }

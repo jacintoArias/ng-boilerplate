@@ -1,5 +1,5 @@
 import { User } from 'app/core/index';
-import { UserActions, UserActionTypes } from '../../../core/store/actions/user.actions';
+import { UserActions, UserActionTypes } from '../actions/user.actions';
 
 export interface State {
   profile: User;

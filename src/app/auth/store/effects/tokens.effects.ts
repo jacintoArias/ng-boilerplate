@@ -7,7 +7,7 @@ import { of } from 'rxjs/observable/of';
 
 import { Auth0Service } from 'app/auth/services/auth0.service';
 import * as tokensActions from '../actions/tokens.actions';
-import { ProfileLoad, ProfileRemove } from 'app/core/store/actions/user.actions';
+import { ProfileLoad, ProfileRemove } from 'app/auth/store/actions/user.actions';
 
 @Injectable()
 export class TokensEffects {

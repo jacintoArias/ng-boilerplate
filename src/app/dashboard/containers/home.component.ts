@@ -1,7 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 
-import { UserService } from '@app/core/';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
+
+import * as fromRoot from '@app/core/store';
+import * as fromAuth from '@app/auth/store';
 import { GithubService } from '@app/github/services/github.service';
 import { User } from '@app/core';
 import { GithubUserStatus, GithubUser } from '@app/github/models/github-user.model';
@@ -28,10 +31,10 @@ export class HomeComponent implements OnInit {
   githubUserStatus$: Observable<GithubUserStatus>;
 
   constructor(
-    private userService: UserService,
+    private store: Store<fromRoot.State>,
     private githubService: GithubService,
   ) {
-    this.profile$ = this.userService.getProfile();
+    this.profile$ = this.store.select(fromAuth.getProfile);
     this.githubUser$ = this.githubService.getUserData();
     this.githubUserStatus$ = this.githubService.getUserStatus();
   }
