@@ -6,6 +6,7 @@ import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 import { environment } from '@env/environment';
 import { AuthService } from './services/auth.service';
+import { UserService } from '@app/auth/services/user.service';
 import { Auth0Service } from './services/auth0.service';
 import { TokenService } from './services/token.service';
 import { AuthGuard } from './guards/auth.guard';
@@ -37,6 +38,7 @@ export class AuthModule {
         AuthService,
         Auth0Service,
         TokenService,
+        UserService,
         AuthGuard,
       ],
     };

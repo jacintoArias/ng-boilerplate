@@ -9,14 +9,10 @@ import { environment } from '@env/environment';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { localStorageSync } from 'ngrx-store-localstorage';
 
-import * as fromUser from './reducers/user.reducer';
-
 export interface State {
-  user: fromUser.State;
 }
 
 export const reducers: ActionReducerMap<State> = {
-  user: fromUser.reducer,
 };
 
 // console.log all actions
@@ -30,7 +26,7 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
 }
 
 export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
-  return localStorageSync({keys: ['user', 'auth', { github: ['status']}], rehydrate: true})(reducer);
+  return localStorageSync({keys: ['auth', { github: ['status']}], rehydrate: true})(reducer);
 }
 
 export const metaReducers: MetaReducer<State>[] = !environment.production
@@ -38,9 +34,4 @@ export const metaReducers: MetaReducer<State>[] = !environment.production
   : [localStorageSyncReducer];
 
 
-export const selectUserState = createFeatureSelector<fromUser.State>('user');
 
-export const getProfile = createSelector(
-  selectUserState,
-  fromUser.getProfile
-);

@@ -8,7 +8,6 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AuthModule } from '@app/auth';
 import { GithubModule } from '@app/github';
-import { UserService } from './services/user.service';
 import { environment } from '@env/environment';
 
 import { reducers, metaReducers } from './store';
@@ -26,7 +25,6 @@ import { reducers, metaReducers } from './store';
   ],
   declarations: [],
   providers: [
-    UserService,
   ]
 })
 export class CoreModule {
