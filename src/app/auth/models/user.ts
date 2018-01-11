@@ -6,7 +6,7 @@ export interface User {
   'picture': string;
 }
 
-export function generateMockOpenId(): User {
+export function generateMockUser(): User {
   return {
     email: 'mock@example.com',
     email_verified: false,

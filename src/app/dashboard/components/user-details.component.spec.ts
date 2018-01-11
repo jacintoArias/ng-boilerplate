@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserDetailsComponent } from './user-details.component';
 import { SharedModule } from '@app/shared';
-import { generateMockOpenId } from '@app/core';
+import { generateMockUser } from '@app/core';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
@@ -40,7 +40,7 @@ describe('UserDetailsComponent', () => {
   });
 
   it('should display the profile', () => {
-    const mockedProfile = generateMockOpenId();
+    const mockedProfile = generateMockUser();
     comp.profile = mockedProfile;
     fix.detectChanges();
 
