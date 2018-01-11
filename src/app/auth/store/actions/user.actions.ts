@@ -3,8 +3,8 @@ import { Action } from '@ngrx/store';
 import { User } from '../../models';
 
 export enum UserActionTypes {
-  ProfileLoad = '[User] ProfileLoad',
-  ProfileRemove = '[User] ProfileRemove',
+  ProfileLoad = '[Auth] ProfileLoad',
+  ProfileRemove = '[Auth] ProfileRemove',
 }
 
 export class ProfileLoad implements Action {
