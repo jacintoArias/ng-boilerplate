@@ -1,7 +1,8 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
-import {LayoutService} from '@app/dashboard/services/layout.service';
+import * as fromDashboard from '@app/dashboard/store';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-sidenav-layout',
@@ -29,9 +30,9 @@ export class SidenavLayoutComponent {
   showSidenav$: Observable<boolean>;
 
   constructor(
-    private layoutService: LayoutService,
+    private store: Store<fromDashboard.State>,
   ) {
-    this.showSidenav$ = this.layoutService.getSidenavStatus();
+    this.showSidenav$ = this.store.select(fromDashboard.getSidenav);
   }
 
 }

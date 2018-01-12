@@ -6,7 +6,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { SharedModule } from '@app/shared';
 
-import { LayoutService } from './services/layout.service';
 import { reducers, effects } from './store/';
 import { DashboardComponent } from './containers/dashboard.component';
 import { HomeComponent } from './containers/home.component';
@@ -37,8 +36,6 @@ import { GithubUserSetterComponent } from './components/github-user-setter.compo
     GithubUserInfoComponent,
     GithubUserSetterComponent,
   ],
-  providers: [
-    LayoutService,
-  ]
+  providers: []
 })
 export class DashboardModule { }

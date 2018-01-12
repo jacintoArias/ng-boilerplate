@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 
-import * as fromRoot from '@app/core/store/reducers/index';
+import * as fromRoot from '@app/core/store';
 import * as fromAuth from '@app/auth/store';
-import { LayoutService } from '@app/dashboard/services/layout.service';
+import * as fromDashboard from '@app/dashboard/store';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,11 +27,10 @@ export class DashboardComponent {
 
   constructor(
     private store: Store<fromRoot.State>,
-    private layoutService: LayoutService,
   ) {}
 
   toggleSidenav() {
-    this.layoutService.toggleSidenav();
+    this.store.dispatch(new fromDashboard.SidenavToggle());
   }
 
   logout() {
