@@ -5,7 +5,6 @@ import { DebugElement } from '@angular/core';
 
 import { SharedModule } from '@app/shared';
 import { GithubUserSetterComponent } from './github-user-setter.component';
-import { GithubService } from '@app/github';
 
 describe('GithubUserSetterComponent', () => {
   let comp: GithubUserSetterComponent;

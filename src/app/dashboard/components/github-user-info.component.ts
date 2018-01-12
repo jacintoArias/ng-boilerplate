@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GithubUser } from '@app/github/models/github-user.model';
+import { GithubUser } from '@app/github/models';
 
 @Component({
   selector: 'app-github-user-info',

@@ -3,11 +3,11 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
-import * as fromRoot from '@app/core/store/reducers/index';
+import * as fromRoot from '@app/core/store';
 import * as fromAuth from '@app/auth/store';
+import * as fromGithub from '@app/github/store';
 import { User } from '@app/auth/models';
-import { GithubService } from '@app/github/services/github.service';
-import { GithubUserStatus, GithubUser } from '@app/github/models/github-user.model';
+import { GithubUserStatus, GithubUser } from '@app/github/models';
 
 @Component({
   selector: 'app-home',
@@ -32,22 +32,21 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private store: Store<fromRoot.State>,
-    private githubService: GithubService,
   ) {
     this.profile$ = this.store.select(fromAuth.getProfile);
-    this.githubUser$ = this.githubService.getUserData();
-    this.githubUserStatus$ = this.githubService.getUserStatus();
+    this.githubUser$ = this.store.select(fromGithub.getGithubUser);
+    this.githubUserStatus$ =  this.store.select(fromGithub.selectGithubUserStatus);
   }
 
   ngOnInit(): void {
-    this.githubService.loadUser();
+    this.store.dispatch(new fromGithub.UserLoad());
   }
 
   public setGithubUser(event) {
-    this.githubService.selectUser(event.user);
+    this.store.dispatch(new fromGithub.UserSelect(event.user));
   }
 
   public resetGithubUser() {
-    this.githubService.removeUser();
+    this.store.dispatch(new fromGithub.UserRemove());
   }
 }

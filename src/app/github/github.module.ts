@@ -3,10 +3,8 @@ import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { GithubService } from './services/github.service';
-import { GithubApiService } from './services/github-api.service';
-import { GithubEffects } from './store/effects/github.effects';
-import { reducers } from './store/';
+import { services } from './services';
+import { reducers, effects } from './store/';
 
 @NgModule({
   imports: [
@@ -18,10 +16,7 @@ export class GithubModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: RootGithubModule,
-      providers: [
-        GithubApiService,
-        GithubService,
-      ]
+      providers: [ ...services ]
     };
   }
 }
@@ -30,7 +25,7 @@ export class GithubModule {
   imports: [
     CommonModule,
     StoreModule.forFeature('github', reducers),
-    EffectsModule.forFeature([GithubEffects]),
+    EffectsModule.forFeature(effects),
   ],
   declarations: []
 })

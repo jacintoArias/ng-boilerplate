@@ -1,5 +1,5 @@
-import { GithubActions, GithubActionTypes } from '../actions/github.actions';
-import { GithubUserStatus } from 'app/github/index';
+import { GithubActions, GithubUserActionTypes } from '../actions';
+import { GithubUserStatus } from '../../models';
 
 export interface State {
   user: GithubUserStatus;
@@ -18,7 +18,7 @@ const initialState: State = {
 export function reducer(state = initialState, action: GithubActions): State {
   switch (action.type) {
 
-    case GithubActionTypes.UserSelect:
+    case GithubUserActionTypes.UserSelect:
       return {
         ...state,
         user: {
@@ -28,7 +28,7 @@ export function reducer(state = initialState, action: GithubActions): State {
         }
       };
 
-    case GithubActionTypes.UserLoad:
+    case GithubUserActionTypes.UserLoad:
       return {
         ...state,
         user: Object.assign( {},
@@ -37,7 +37,7 @@ export function reducer(state = initialState, action: GithubActions): State {
         )
       };
 
-    case GithubActionTypes.UserLoadSuccess:
+    case GithubUserActionTypes.UserLoadSuccess:
       return {
         ...state,
         user: Object.assign( {},
@@ -47,7 +47,7 @@ export function reducer(state = initialState, action: GithubActions): State {
         )
       };
 
-    case GithubActionTypes.UserLoadError:
+    case GithubUserActionTypes.UserLoadError:
       return {
         ...state,
         user: Object.assign( {},
@@ -57,7 +57,7 @@ export function reducer(state = initialState, action: GithubActions): State {
         ),
       };
 
-    case GithubActionTypes.UserRemove:
+    case GithubUserActionTypes.UserRemove:
       return {
         ...state,
         user: initialUserState,

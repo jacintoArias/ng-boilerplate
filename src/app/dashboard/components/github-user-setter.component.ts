@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
-import { getGithubUserStatusInit, GithubUserStatus } from '@app/github';
+import { getGithubUserStatusInit, GithubUserStatus } from '@app/github/models';
 
 @Component({
   selector: 'app-github-user-setter',

@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { GithubUserInfoComponent } from './github-user-info.component';
-import { SharedModule } from '@app/shared';
-import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { genGithubUserMock } from '@app/github';
+import { By } from '@angular/platform-browser';
+
+import { SharedModule } from '@app/shared';
+import { GithubUserInfoComponent } from './github-user-info.component';
+import { genGithubUserMock } from '@app/github/models';
 
 describe('GithubUserInfoComponent', () => {
   let comp: GithubUserInfoComponent;
