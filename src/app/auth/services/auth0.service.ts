@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
@@ -11,15 +11,18 @@ import { User } from '../models';
 import { Tokens } from '../models';
 
 import { environment } from '@env/environment';
-
+import { Store } from '@ngrx/store';
+import * as fromAuth from '../store';
 @Injectable()
 export class Auth0Service {
 
   constructor(
-    private router: Router,
-  ) {}
+    private http: HttpClient,
+    private store: Store<fromAuth.State>,
+  ) {
+  }
 
-  auth0 = new auth0.WebAuth({
+  readonly auth0Authorizer= new auth0.WebAuth({
     clientID: environment.auth0.clientID,
     domain: environment.auth0.domain,
     responseType: 'token id_token',
@@ -29,39 +32,37 @@ export class Auth0Service {
   });
 
   private static payload2profile(payload): User {
-
-    // Add custom claims and getters
-    const {
-      email,
-      email_verified,
-      name,
-      nickname,
-      picture,
-    } = payload;
-
-    return {
-      email,
-      email_verified,
-      name,
-      nickname,
-      picture,
+    const props = [
+      'sub',
+      'email',
+      'email_verified',
+      'name',
+      'nickname',
+      'picture',
+      'https://myapp.example.com/github_user'
+    ];
+    const rename = {
+      sub: 'id',
+      'https://myapp.example.com/github_user': 'github_user',
     };
+    return Object.assign({}, ...props.map(k => ({[rename[k] || k]: payload[k]})));
   }
 
   public login(): void {
-    this.auth0.authorize();
+    this.auth0Authorizer.authorize();
   }
 
   public handleAuthentication(): Observable<{ tokens: Tokens, profile: User }> {
     return Observable.bindNodeCallback((
-      callback: (error: Error, authResult: {idToken, accessToken, idTokenPayload}) => void) =>
-        this.auth0.parseHash(callback)
+      callback: (err: Error, res: { idToken, accessToken, idTokenPayload }) => void) =>
+        this.auth0Authorizer.parseHash(callback)
     )().pipe(
-        map(authResult => {
-            const { idToken, accessToken, idTokenPayload } = authResult;
-            return { tokens: { idToken, accessToken }, profile: Auth0Service.payload2profile(idTokenPayload) };
-        }),
+        map( ({ idToken, accessToken, idTokenPayload }) =>
+          ({ tokens: { idToken, accessToken }, profile: Auth0Service.payload2profile(idTokenPayload) })
+        ),
       );
-  }
+    }
 
+
+  }
 }
