@@ -3,22 +3,34 @@ import { User } from '../../models';
 
 export interface State {
   profile: User;
+  loaded: boolean;
+  loading: boolean;
 }
 
 const initialState: State = {
   profile: null,
+  loaded: false,
+  loading: false,
 };
 
 export function reducer(state = initialState, action: UserActions): State {
   switch (action.type) {
+    case UserActionTypes.LoadUser:
+      return {
+        ...state,
+        loaded: false,
+        loading: true,
+      };
 
-    case UserActionTypes.ProfileLoad:
+    case UserActionTypes.LoadUserSuccess:
       return {
         ...state,
         profile: action.payload,
+        loaded: true,
+        loading: false,
       };
 
-    case UserActionTypes.ProfileRemove:
+    case UserActionTypes.LoadUserFail:
       return initialState;
 
     default:
@@ -26,4 +38,6 @@ export function reducer(state = initialState, action: UserActions): State {
   }
 }
 
-export const getProfile = (state: State) => state.profile;
+export const getUserProfile = (state: State) => state.profile;
+export const getUserLoaded = (state: State) => state.loaded;
+export const getUserLoading = (state: State) => state.loading;

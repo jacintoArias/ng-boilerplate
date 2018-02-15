@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
-import {
-  Routes,
-  RouterModule
-} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 import { CallbackComponent } from './callback.component';
-import { AuthGuard } from '@app/auth/guards';
+import { AuthGuard, UserLoadedGuard } from '@app/auth/guards';
 
 export const routes: Routes = [
   {
@@ -15,16 +12,16 @@ export const routes: Routes = [
   {
     path: '',
     loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, UserLoadedGuard],
   },
   {
     path: '**',
-    redirectTo: ''
-  }
+    redirectTo: '',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

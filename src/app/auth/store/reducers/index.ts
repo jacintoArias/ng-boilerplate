@@ -15,9 +15,8 @@ export interface State extends fromRoot.State {
 
 export const reducers = {
   tokens: fromAuth.reducer,
-  user: fromUser.reducer
+  user: fromUser.reducer,
 };
-
 
 export const selectAuthState = createFeatureSelector<AuthState>('auth');
 
@@ -36,7 +35,17 @@ export const selectAuthUserState = createSelector(
   (state: AuthState) => state.user
 );
 
-export const getProfile = createSelector(
+export const getUserProfile = createSelector(
   selectAuthUserState,
-  fromUser.getProfile
+  fromUser.getUserProfile
+);
+
+export const getUserLoading = createSelector(
+  selectAuthUserState,
+  fromUser.getUserLoading
+);
+
+export const getUserLoaded = createSelector(
+  selectAuthUserState,
+  fromUser.getUserLoaded
 );

@@ -10,16 +10,9 @@ import { AppComponent } from './app.component';
 import { CallbackComponent } from './callback.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    CallbackComponent,
-  ],
-  imports: [
-    AppRoutingModule,
-    BrowserModule,
-    CoreModule,
-  ],
+  declarations: [AppComponent, CallbackComponent],
+  imports: [AppRoutingModule, BrowserModule, CoreModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

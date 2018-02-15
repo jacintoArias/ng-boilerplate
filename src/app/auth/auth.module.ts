@@ -10,7 +10,6 @@ import { services, TokenService } from './services';
 import { guards } from './guards';
 import { environment } from '@env/environment';
 
-
 export function jwtOptionsFactory(tokenService) {
   return {
     tokenGetter: () => {
@@ -21,9 +20,7 @@ export function jwtOptionsFactory(tokenService) {
 }
 
 @NgModule({
-  imports: [
-    CommonModule,
-  ],
+  imports: [CommonModule],
   declarations: [],
   exports: [],
 })
@@ -43,12 +40,12 @@ export class AuthModule {
       jwtOptionsProvider: {
         provide: JWT_OPTIONS,
         useFactory: jwtOptionsFactory,
-        deps: [TokenService]
-      }
+        deps: [TokenService],
+      },
     }),
     StoreModule.forFeature('auth', reducers),
     EffectsModule.forFeature(effects),
   ],
-  declarations: []
+  declarations: [],
 })
-export class RootAuthModule { }
+export class RootAuthModule {}

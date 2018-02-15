@@ -11,7 +11,6 @@ import * as userActions from '../actions/user.actions';
 
 @Injectable()
 export class TokensEffects {
-
   constructor(
     private actions$: Actions,
     private auth0Service: Auth0Service,
@@ -21,34 +20,30 @@ export class TokensEffects {
   @Effect({ dispatch: false })
   login$ = this.actions$
     .ofType(tokensActions.TokensActionTypes.Login)
-    .pipe(
-      tap(() => this.auth0Service.login())
-    );
+    .pipe(tap(() => this.auth0Service.login()));
 
   @Effect()
   loginHandle$ = this.actions$
     .ofType(tokensActions.TokensActionTypes.LoginHandle)
     .pipe(
-      switchMap((action: tokensActions.LoginHandle) => this.auth0Service.handleAuthentication()),
-      mergeMap((res) => [
+      switchMap((action: tokensActions.LoginHandle) =>
+        this.auth0Service.handleAuthentication()
+      ),
+      mergeMap(res => [
         new tokensActions.LoginSuccess(res.tokens),
-        new userActions.ProfileLoad(res.profile),
+        new userActions.LoadUserSuccess(res.profile),
       ]),
-      catchError( (err) => of(new tokensActions.Logout())),
+      catchError(err => of(new tokensActions.Logout()))
     );
 
   @Effect({ dispatch: false })
   loginSuccess$ = this.actions$
     .ofType(tokensActions.TokensActionTypes.LoginSucess)
-    .pipe(
-      tap(() => this.router.navigate(['/']))
-    );
+    .pipe(tap(() => this.router.navigate(['/'])));
 
   @Effect({ dispatch: false })
-  logout$ = this.actions$
-    .ofType(tokensActions.TokensActionTypes.Logout)
-    .pipe(
-      map(() => new userActions.ProfileRemove()),
-      tap(() => this.auth0Service.login())
-    );
+  logout$ = this.actions$.ofType(tokensActions.TokensActionTypes.Logout).pipe(
+    // map(() => new userActions.ProfileRemove()),
+    tap(() => this.auth0Service.login())
+  );
 }

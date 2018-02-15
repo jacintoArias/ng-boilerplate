@@ -22,20 +22,19 @@ import { GithubUserStatus, GithubUser } from '@app/github/models';
       <app-github-user-info [githubUser]="(githubUser$ | async)"></app-github-user-info>
     </div>
   `,
-  styles: []
+  styles: [],
 })
 export class HomeComponent implements OnInit {
-
   profile$: Observable<User>;
   githubUser$: Observable<GithubUser>;
   githubUserStatus$: Observable<GithubUserStatus>;
 
-  constructor(
-    private store: Store<fromRoot.State>,
-  ) {
-    this.profile$ = this.store.select(fromAuth.getProfile);
+  constructor(private store: Store<fromRoot.State>) {
+    this.profile$ = this.store.select(fromAuth.getUserProfile);
     this.githubUser$ = this.store.select(fromGithub.getGithubUser);
-    this.githubUserStatus$ =  this.store.select(fromGithub.selectGithubUserStatus);
+    this.githubUserStatus$ = this.store.select(
+      fromGithub.selectGithubUserStatus
+    );
   }
 
   ngOnInit(): void {

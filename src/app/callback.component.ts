@@ -7,12 +7,10 @@ import * as fromAuth from '@app/auth/store';
 @Component({
   selector: 'app-callback',
   template: ``,
-  styles: []
+  styles: [],
 })
 export class CallbackComponent {
-
   constructor(private store: Store<fromAuth.State>) {
     this.store.dispatch(new fromAuth.LoginHandle());
   }
-
 }
