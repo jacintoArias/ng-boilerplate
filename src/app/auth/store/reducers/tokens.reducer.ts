@@ -9,12 +9,8 @@ export const initialState: State = {
   tokens: null,
 };
 
-export function reducer(
-  state = initialState,
-  action: TokensActions
-): State {
+export function reducer(state = initialState, action: TokensActions): State {
   switch (action.type) {
-
     case TokensActionTypes.LoginSucess:
       return {
         ...state,

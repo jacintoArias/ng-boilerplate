@@ -31,18 +31,16 @@ import { GithubUser } from '@app/github/models';
       </mat-card>
     </ng-template>
   `,
-  styles: []
+  styles: [],
 })
 export class GithubUserInfoComponent implements OnInit {
-
   @Input() githubUser: GithubUser;
 
   errorMessage = 'No github profile set!';
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   public setAvatar(picture) {
     return {

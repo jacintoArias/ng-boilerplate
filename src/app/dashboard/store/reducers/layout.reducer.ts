@@ -10,7 +10,6 @@ const initialState: State = {
 
 export function reducer(state = initialState, action: LayoutActions): State {
   switch (action.type) {
-
     case LayoutActionTypes.SidenavToggle:
       return {
         ...state,

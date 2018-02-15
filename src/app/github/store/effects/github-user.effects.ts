@@ -3,7 +3,14 @@ import { Injectable } from '@angular/core';
 import { Action, Store } from '@ngrx/store';
 import { Effect, Actions } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
-import { map, switchMap, catchError, take, withLatestFrom, filter } from 'rxjs/operators';
+import {
+  map,
+  switchMap,
+  catchError,
+  take,
+  withLatestFrom,
+  filter,
+} from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 
 import * as fromActions from '../actions';
@@ -13,19 +20,16 @@ import * as fromGithub from '../reducers/';
 
 @Injectable()
 export class GithubUserEffects {
-
   constructor(
     private actions$: Actions,
     private githubApi: GithubApiService,
-    private store: Store<fromGithub.GithubState>,
+    private store: Store<fromGithub.GithubState>
   ) {}
 
   @Effect()
   userSelect$: Observable<Action> = this.actions$
     .ofType(fromActions.GithubUserActionTypes.UserSelect)
-    .pipe(
-      map(() => new fromActions.UserLoad())
-    );
+    .pipe(map(() => new fromActions.UserLoad()));
 
   @Effect()
   userLoad$: Observable<Action> = this.actions$
@@ -40,8 +44,8 @@ export class GithubUserEffects {
           .pipe(
             take(1),
             map((user: GithubUser) => new fromActions.UserLoadSuccess(user)),
-            catchError(err => of(new fromActions.UserLoadError(err))),
+            catchError(err => of(new fromActions.UserLoadError(err)))
           );
-      }),
+      })
     );
 }

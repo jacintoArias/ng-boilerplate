@@ -27,14 +27,10 @@ export const selectGithubData = createSelector(
   (state: GithubState) => state.data
 );
 
-export const getGithubUser = createSelector(
-  selectGithubData,
-  fromData.getUser
-);
+export const getGithubUser = createSelector(selectGithubData, fromData.getUser);
 
 // Status
 export const selectGithubUserStatus = createSelector(
   selectGithubState,
   (state: GithubState) => state.status.user
 );
-

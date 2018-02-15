@@ -1,5 +1,5 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import * as fromDashboard from '@app/dashboard/store';
 import { Store } from '@ngrx/store';
@@ -19,20 +19,18 @@ import { Store } from '@ngrx/store';
       </mat-sidenav-content>
     </mat-sidenav-container>
   `,
-  styles: [`
+  styles: [
+    `
     mat-sidenav-container {
       height: 100vh;
     }
-  `]
+  `,
+  ],
 })
 export class SidenavLayoutComponent {
-
   showSidenav$: Observable<boolean>;
 
-  constructor(
-    private store: Store<fromDashboard.State>,
-  ) {
+  constructor(private store: Store<fromDashboard.State>) {
     this.showSidenav$ = this.store.select(fromDashboard.getSidenav);
   }
-
 }

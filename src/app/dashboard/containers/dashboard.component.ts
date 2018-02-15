@@ -21,13 +21,10 @@ import * as fromDashboard from '@app/dashboard/store';
       </div>
     </app-sidenav-layout>
   `,
-  styles: []
+  styles: [],
 })
 export class DashboardComponent {
-
-  constructor(
-    private store: Store<fromRoot.State>,
-  ) {}
+  constructor(private store: Store<fromRoot.State>) {}
 
   toggleSidenav() {
     this.store.dispatch(new fromDashboard.SidenavToggle());

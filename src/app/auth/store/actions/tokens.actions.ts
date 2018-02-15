@@ -27,9 +27,4 @@ export class Logout implements Action {
   readonly type = TokensActionTypes.Logout;
 }
 
-export type TokensActions =
-  Login |
-  LoginHandle |
-  LoginSuccess |
-  Logout;
-
+export type TokensActions = Login | LoginHandle | LoginSuccess | Logout;

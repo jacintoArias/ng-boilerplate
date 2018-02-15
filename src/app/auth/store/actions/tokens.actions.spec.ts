@@ -2,7 +2,6 @@ import * as tokensActions from './tokens.actions';
 import { genTokensMock } from '../../models';
 
 describe('Auth Actions', () => {
-
   describe('Login Action', () => {
     describe('Login', () => {
       it('should create an action', () => {
@@ -35,7 +34,7 @@ describe('Auth Actions', () => {
 
         expect({ ...action }).toEqual({
           type: tokensActions.TokensActionTypes.LoginSucess,
-          payload
+          payload,
         });
       });
     });
@@ -52,5 +51,4 @@ describe('Auth Actions', () => {
       });
     });
   });
-
 });

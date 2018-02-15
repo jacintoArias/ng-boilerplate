@@ -9,6 +9,4 @@ export class SidenavToggle implements Action {
   readonly type = LayoutActionTypes.SidenavToggle;
 }
 
-export type LayoutActions =
-  SidenavToggle;
-
+export type LayoutActions = SidenavToggle;

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,14 +9,14 @@ import {ChangeDetectionStrategy, Component } from '@angular/core';
       <ng-content></ng-content>
     </mat-toolbar>
   `,
-  styles: [`
+  styles: [
+    `
     mat-toolbar {
       z-index: 10;
     }
-  `]
+  `,
+  ],
 })
 export class ToolbarComponent {
-
-  constructor() { }
-
+  constructor() {}
 }

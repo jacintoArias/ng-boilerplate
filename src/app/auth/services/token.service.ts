@@ -13,22 +13,13 @@ import { Tokens } from '../models';
  */
 @Injectable()
 export class TokenService {
-
-  constructor(
-    private store: Store<fromAuth.State>
-  ) { }
+  constructor(private store: Store<fromAuth.State>) {}
 
   public getTokens(): Observable<Tokens> {
     return this.store.select(fromAuth.getTokens);
   }
 
   public getAccessToken() {
-    return this.getTokens()
-      .pipe(
-        map(tokens => tokens.accessToken),
-        take(1),
-      );
+    return this.getTokens().pipe(map(tokens => tokens.accessToken), take(1));
   }
-
-
 }

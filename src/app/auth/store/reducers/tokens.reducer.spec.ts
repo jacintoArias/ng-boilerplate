@@ -3,37 +3,37 @@ import * as Auth from '../actions/tokens.actions';
 import { Tokens, genTokensMock } from '../../models/';
 
 describe('TokensReducer', () => {
-   describe('Undefined Action', () => {
+  describe('Undefined Action', () => {
     it('should return the default state', () => {
-     const { initialState } = fromAuth;
-     const action = {} as any;
-     const state = fromAuth.reducer(undefined, action);
+      const { initialState } = fromAuth;
+      const action = {} as any;
+      const state = fromAuth.reducer(undefined, action);
 
-     expect(state).toBe(initialState);
+      expect(state).toBe(initialState);
     });
-   });
+  });
 
-   describe('Login Action', () => {
-     it('should return the default state', () => {
-       const { initialState } = fromAuth;
-       const action = {} as any;
-       const state = fromAuth.reducer(undefined, action);
+  describe('Login Action', () => {
+    it('should return the default state', () => {
+      const { initialState } = fromAuth;
+      const action = {} as any;
+      const state = fromAuth.reducer(undefined, action);
 
-       expect(state).toBe(initialState);
-     });
-   });
+      expect(state).toBe(initialState);
+    });
+  });
 
-   describe('LoginHandle Action', () => {
-     it('should return the default state', () => {
-       const { initialState } = fromAuth;
-       const action = {} as any;
-       const state = fromAuth.reducer(undefined, action);
+  describe('LoginHandle Action', () => {
+    it('should return the default state', () => {
+      const { initialState } = fromAuth;
+      const action = {} as any;
+      const state = fromAuth.reducer(undefined, action);
 
-       expect(state).toBe(initialState);
-     });
-   });
+      expect(state).toBe(initialState);
+    });
+  });
 
-   describe('LoginSucess Action', () => {
+  describe('LoginSucess Action', () => {
     it('should populate the tokens', () => {
       const tokens: Tokens = genTokensMock();
       const { initialState } = fromAuth;
@@ -45,7 +45,7 @@ describe('TokensReducer', () => {
         tokens,
       });
     });
-   });
+  });
 
   describe('Logout Action', () => {
     it('should return initial state', () => {
@@ -58,8 +58,4 @@ describe('TokensReducer', () => {
       expect(state).toEqual(initialState);
     });
   });
-
 });
-
-
-

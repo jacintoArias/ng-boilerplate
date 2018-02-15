@@ -11,7 +11,6 @@ const initialState: State = {
 
 export function reducer(state = initialState, action: GithubActions): State {
   switch (action.type) {
-
     case GithubUserActionTypes.UserLoad:
     case GithubUserActionTypes.UserLoadError:
     case GithubUserActionTypes.UserRemove:

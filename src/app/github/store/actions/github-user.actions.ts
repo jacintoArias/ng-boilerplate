@@ -17,7 +17,6 @@ export class UserSelect implements Action {
 
 export class UserLoad implements Action {
   readonly type = GithubUserActionTypes.UserLoad;
-
 }
 
 export class UserLoadSuccess implements Action {
@@ -34,13 +33,11 @@ export class UserLoadError implements Action {
 
 export class UserRemove implements Action {
   readonly type = GithubUserActionTypes.UserRemove;
-
 }
 
 export type GithubActions =
-  UserSelect |
-  UserLoad |
-  UserLoadSuccess |
-  UserLoadError |
-  UserRemove;
-
+  | UserSelect
+  | UserLoad
+  | UserLoadSuccess
+  | UserLoadError
+  | UserRemove;

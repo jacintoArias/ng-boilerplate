@@ -32,16 +32,17 @@ import { User } from '@app/auth/models';
       </mat-card>
     </ng-template>
   `,
-  styles: [`
-  `]
+  styles: [
+    `
+  `,
+  ],
 })
 export class UserDetailsComponent {
-
   @Input() profile: User;
 
   errorMessage = 'Error Fetching the user profile.';
 
-  constructor() { }
+  constructor() {}
 
   public setAvatar() {
     return {
@@ -49,5 +50,4 @@ export class UserDetailsComponent {
       'background-size': 'cover',
     };
   }
-
 }

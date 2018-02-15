@@ -7,16 +7,14 @@ import { services } from './services';
 import { reducers, effects } from './store/';
 
 @NgModule({
-  imports: [
-    CommonModule,
-  ],
+  imports: [CommonModule],
   declarations: [],
 })
 export class GithubModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: RootGithubModule,
-      providers: [ ...services ]
+      providers: [...services],
     };
   }
 }
@@ -27,6 +25,6 @@ export class GithubModule {
     StoreModule.forFeature('github', reducers),
     EffectsModule.forFeature(effects),
   ],
-  declarations: []
+  declarations: [],
 })
-export class RootGithubModule { }
+export class RootGithubModule {}

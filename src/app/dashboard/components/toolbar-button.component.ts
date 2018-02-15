@@ -7,16 +7,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
       <mat-icon>{{ icon }}</mat-icon>
     </button>
   `,
-  styles: []
+  styles: [],
 })
 export class ToolbarButtonComponent implements OnInit {
-
   @Input() icon = '';
   @Output() navigate = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
