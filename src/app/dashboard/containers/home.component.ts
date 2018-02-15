@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   githubUserStatus$: Observable<GithubUserStatus>;
 
   constructor(private store: Store<fromRoot.State>) {
-    this.profile$ = this.store.select(fromAuth.getUserProfile);
+    this.profile$ = this.store.select(fromAuth.getAuthUserProfile);
     this.githubUser$ = this.store.select(fromGithub.getGithubUser);
     this.githubUserStatus$ = this.store.select(
       fromGithub.selectGithubUserStatus

@@ -27,7 +27,7 @@ export class UserLoadedGuard implements CanActivate {
   }
 
   checkStore(): Observable<boolean> {
-    return this.store.select(fromAuth.getUserLoaded).pipe(
+    return this.store.select(fromAuth.getAuthUserLoaded).pipe(
       tap(loaded => {
         if (!loaded) {
           this.store.dispatch(new fromAuth.LoadUser());

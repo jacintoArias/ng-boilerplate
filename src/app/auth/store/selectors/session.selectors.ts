@@ -16,10 +16,10 @@ export const getAuthSessionTokens = createSelector(
 
 export const getAuthSessionAccessToken = createSelector(
   getAuthSessionTokens,
-  (tokens: Tokens) => tokens.accessToken
+  (tokens: Tokens) => (tokens ? tokens.accessToken : '')
 );
 
 export const getAuthSessionIdToken = createSelector(
   getAuthSessionTokens,
-  (tokens: Tokens) => tokens.idToken
+  (tokens: Tokens) => (tokens ? tokens.idToken : '')
 );
