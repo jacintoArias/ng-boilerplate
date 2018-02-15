@@ -18,20 +18,10 @@ export const reducers = {
   user: fromUser.reducer,
 };
 
-export const selectAuthState = createFeatureSelector<AuthState>('auth');
-
-export const selectAuthSessionState = createSelector(
-  selectAuthState,
-  (state: AuthState) => state.session
-);
-
-export const getTokens = createSelector(
-  selectAuthSessionState,
-  fromAuth.getTokens
-);
+export const getAuthState = createFeatureSelector<AuthState>('auth');
 
 export const selectAuthUserState = createSelector(
-  selectAuthState,
+  getAuthState,
   (state: AuthState) => state.user
 );
 
