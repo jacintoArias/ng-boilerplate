@@ -1,7 +1,7 @@
-import { TokensEffects } from './tokens.effects';
+import { SessionEffects } from './session.effects';
 import { UserEffects } from './user.effects';
 
-export const effects: any[] = [TokensEffects, UserEffects];
+export const effects: any[] = [SessionEffects, UserEffects];
 
-export * from './tokens.effects';
+export * from './session.effects';
 export * from './user.effects';

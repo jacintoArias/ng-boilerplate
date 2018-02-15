@@ -1,5 +1,5 @@
-import * as fromAuth from './tokens.reducer';
-import * as Auth from '../actions/tokens.actions';
+import * as fromAuth from './session.reducer';
+import * as Auth from '../actions/session.actions';
 import { Tokens, genTokensMock } from '../../models/';
 
 describe('TokensReducer', () => {
@@ -51,7 +51,7 @@ describe('TokensReducer', () => {
     it('should return initial state', () => {
       const tokens: Tokens = genTokensMock();
       const { initialState } = fromAuth;
-      const previousState: fromAuth.State = { tokens };
+      const previousState: fromAuth.SessionState = { tokens };
       const action = new Auth.Logout();
       const state = fromAuth.reducer(previousState, action);
 

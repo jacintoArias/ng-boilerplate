@@ -1,11 +1,11 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 
 import * as fromRoot from 'app/core/store/reducers/index';
-import * as fromAuth from './tokens.reducer';
+import * as fromAuth from './session.reducer';
 import * as fromUser from './user.reducer';
 
 export interface AuthState {
-  tokens: fromAuth.State;
+  session: fromAuth.SessionState;
   user: fromUser.State;
 }
 
@@ -14,19 +14,19 @@ export interface State extends fromRoot.State {
 }
 
 export const reducers = {
-  tokens: fromAuth.reducer,
+  session: fromAuth.reducer,
   user: fromUser.reducer,
 };
 
 export const selectAuthState = createFeatureSelector<AuthState>('auth');
 
-export const selectAuthTokensState = createSelector(
+export const selectAuthSessionState = createSelector(
   selectAuthState,
-  (state: AuthState) => state.tokens
+  (state: AuthState) => state.session
 );
 
 export const getTokens = createSelector(
-  selectAuthTokensState,
+  selectAuthSessionState,
   fromAuth.getTokens
 );
 

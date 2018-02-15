@@ -2,29 +2,29 @@ import { Action } from '@ngrx/store';
 
 import { Tokens } from '../../models';
 
-export enum TokensActionTypes {
+export enum SessionActionTypes {
   Login = '[Auth] Login',
   LoginHandle = '[Auth] Login Handle',
   LoginSucess = '[Auth] Login Success',
-  Logout = '[Auth] ProfileRemove',
+  Logout = '[Auth] Logout',
 }
 
 export class Login implements Action {
-  readonly type = TokensActionTypes.Login;
+  readonly type = SessionActionTypes.Login;
 }
 
 export class LoginHandle implements Action {
-  readonly type = TokensActionTypes.LoginHandle;
+  readonly type = SessionActionTypes.LoginHandle;
 }
 
 export class LoginSuccess implements Action {
-  readonly type = TokensActionTypes.LoginSucess;
+  readonly type = SessionActionTypes.LoginSucess;
 
   constructor(public payload: Tokens) {}
 }
 
 export class Logout implements Action {
-  readonly type = TokensActionTypes.Logout;
+  readonly type = SessionActionTypes.Logout;
 }
 
-export type TokensActions = Login | LoginHandle | LoginSuccess | Logout;
+export type SessionActions = Login | LoginHandle | LoginSuccess | Logout;

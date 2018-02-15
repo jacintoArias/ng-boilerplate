@@ -1,2 +1,2 @@
-export * from './tokens.actions';
+export * from './session.actions';
 export * from './user.actions';

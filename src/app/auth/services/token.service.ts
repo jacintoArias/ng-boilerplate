@@ -10,6 +10,11 @@ import { Tokens } from '../models';
 /*
   This service is need to be injected as a dependency into
   the Auth0 interceptor. See AuthModule
+
+  wether this can be avoided or not using a better injection approach see #3
+
+  Idelly the interceptor should make use of the store directly and the apporpiate
+  selector (getAuthSessionIsAuthenticated)
  */
 @Injectable()
 export class TokenService {
