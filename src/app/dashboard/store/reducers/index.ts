@@ -16,17 +16,6 @@ export const reducers = {
 };
 
 // Dashboard root
-export const selectDashboardState = createFeatureSelector<DashboardState>(
+export const getDashboardState = createFeatureSelector<DashboardState>(
   'dashboard'
-);
-
-// Layout
-export const selectDashboardLayoutState = createSelector(
-  selectDashboardState,
-  (state: DashboardState) => state.layout
-);
-
-export const getSidenav = createSelector(
-  selectDashboardLayoutState,
-  fromLayout.getSidenav
 );

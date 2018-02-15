@@ -31,6 +31,8 @@ export class SidenavLayoutComponent {
   showSidenav$: Observable<boolean>;
 
   constructor(private store: Store<fromDashboard.State>) {
-    this.showSidenav$ = this.store.select(fromDashboard.getSidenav);
+    this.showSidenav$ = this.store.select(
+      fromDashboard.getDashboardLayoutSidenav
+    );
   }
 }
