@@ -1,4 +1,4 @@
-import { SessionActions, SessionActionTypes } from '../actions';
+import { SessionAction, SessionActionTypes } from '../actions';
 import { Tokens } from '../../models';
 
 export interface SessionState {
@@ -11,7 +11,7 @@ export const initialState: SessionState = {
 
 export function reducer(
   state = initialState,
-  action: SessionActions
+  action: SessionAction
 ): SessionState {
   switch (action.type) {
     case SessionActionTypes.LoginSucess:
