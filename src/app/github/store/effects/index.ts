@@ -1,5 +1,6 @@
-import { GithubUserEffects } from './github-user.effects';
+import { GithubDataEffects } from './github-data.effects';
+import { GithubServiceEffects } from '@app/github/store/effects/github-service.effects';
 
-export const effects: any[] = [GithubUserEffects];
+export const effects: any[] = [GithubDataEffects, GithubServiceEffects];
 
-export * from './github-user.effects';
+export * from './github-data.effects';

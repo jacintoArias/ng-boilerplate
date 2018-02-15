@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 
-import { GithubUser } from 'app/github/models/github-user.model';
+import { GithubProfile } from 'app/github/models/github-user.model';
 
 const GITHUB_API_URL = 'https://api.github.com/';
 const GITHUB_API_USERS = 'users/';
@@ -12,8 +12,8 @@ const GITHUB_API_USERS = 'users/';
 export class GithubApiService {
   constructor(private http: HttpClient) {}
 
-  public getUser(username: string): Observable<GithubUser> {
-    return this.http.get<GithubUser>(
+  public getUser(username: string): Observable<GithubProfile> {
+    return this.http.get<GithubProfile>(
       `${GITHUB_API_URL}${GITHUB_API_USERS}${username}`
     );
   }

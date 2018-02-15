@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 
 import { SharedModule } from '@app/shared';
 import { GithubUserInfoComponent } from './github-user-info.component';
-import { genGithubUserMock } from '@app/github/models';
+import { genGithubProfileMock } from '@app/github/models';
 
 describe('GithubUserInfoComponent', () => {
   let comp: GithubUserInfoComponent;
@@ -37,7 +37,7 @@ describe('GithubUserInfoComponent', () => {
   });
 
   it('should display the profile', () => {
-    const mockedUser = genGithubUserMock();
+    const mockedUser = genGithubProfileMock();
     comp.githubUser = mockedUser;
     fix.detectChanges();
 

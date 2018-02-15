@@ -1,4 +1,4 @@
-export interface GithubUser {
+export interface GithubProfile {
   login: string;
   id: number;
   avatar_url: string;
@@ -31,21 +31,7 @@ export interface GithubUser {
   updated_at: string;
 }
 
-export interface GithubUserStatus {
-  user: string;
-  userValid: boolean;
-  userLoading: boolean;
-}
-
-export function getGithubUserStatusInit(): GithubUserStatus {
-  return {
-    user: '',
-    userValid: true,
-    userLoading: false,
-  };
-}
-
-export function genGithubUserMock(): GithubUser {
+export function genGithubProfileMock(): GithubProfile {
   return {
     login: 'mock',
     id: 1234,

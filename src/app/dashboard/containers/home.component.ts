@@ -7,7 +7,7 @@ import * as fromRoot from '@app/core/store';
 import * as fromAuth from '@app/auth/store';
 import * as fromGithub from '@app/github/store';
 import { User } from '@app/auth/models';
-import { GithubUserStatus, GithubUser } from '@app/github/models';
+import { GithubProfile } from '@app/github/models';
 
 @Component({
   selector: 'app-home',
@@ -17,35 +17,41 @@ import { GithubUserStatus, GithubUser } from '@app/github/models';
       <app-user-details [profile]="profile$ | async"></app-user-details>
       <app-github-user-setter (setUser)="setGithubUser($event)"
                               (resetUser)="resetGithubUser()"
-                              [githubUserStatus]="githubUserStatus$ | async">
+                              [username]="githubUsername$ | async"
+                              [usernameValid]="githubUsernameValid$ | async">
       </app-github-user-setter>
-      <app-github-user-info [githubUser]="(githubUser$ | async)"></app-github-user-info>
+      <app-github-user-info [githubUser]="(githubProfileData$ | async)"></app-github-user-info>
     </div>
   `,
   styles: [],
 })
 export class HomeComponent implements OnInit {
   profile$: Observable<User>;
-  githubUser$: Observable<GithubUser>;
-  githubUserStatus$: Observable<GithubUserStatus>;
+  githubProfileData$: Observable<GithubProfile>;
+  githubUsername$: Observable<string>;
+  githubUsernameValid$: Observable<boolean>;
 
   constructor(private store: Store<fromRoot.State>) {
     this.profile$ = this.store.select(fromAuth.getAuthUserProfile);
-    this.githubUser$ = this.store.select(fromGithub.getGithubUser);
-    this.githubUserStatus$ = this.store.select(
-      fromGithub.selectGithubUserStatus
+    this.githubProfileData$ = this.store.select(
+      fromGithub.getGithubDataProfile
+    );
+    this.githubUsername$ = this.store.select(
+      fromGithub.getGithubServiceUsername
+    );
+    this.githubUsernameValid$ = this.store.select(
+      fromGithub.getGithubServiceUsernameValid
     );
   }
 
   ngOnInit(): void {
-    this.store.dispatch(new fromGithub.UserLoad());
+    this.store.dispatch(new fromGithub.LoadData());
   }
 
   public setGithubUser(event) {
-    this.store.dispatch(new fromGithub.UserSelect(event.user));
+    this.store.dispatch(new fromGithub.SetUsername(event.username));
   }
-
   public resetGithubUser() {
-    this.store.dispatch(new fromGithub.UserRemove());
+    this.store.dispatch(new fromGithub.SetUsername(''));
   }
 }
