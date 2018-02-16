@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Action, Store } from '@ngrx/store';
-import { Effect, Actions } from '@ngrx/effects';
+import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 import {
   map,
@@ -30,7 +30,8 @@ export class GithubServiceEffects {
   ) {}
 
   @Effect()
-  userSelect$: Observable<Action> = this.actions$
-    .ofType(fromActions.GithubServiceActionTypes.SetUsername)
-    .pipe(map(() => new fromActions.LoadData()));
+  userSelect$: Observable<Action> = this.actions$.pipe(
+    ofType(fromActions.GithubServiceActionTypes.SetUsername),
+    map(() => new fromActions.LoadData())
+  );
 }

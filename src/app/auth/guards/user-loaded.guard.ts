@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { catchError, filter, map, switchMap, take, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
@@ -27,7 +27,8 @@ export class UserLoadedGuard implements CanActivate {
   }
 
   checkStore(): Observable<boolean> {
-    return this.store.select(fromAuth.getAuthUserLoaded).pipe(
+    return this.store.pipe(
+      select(fromAuth.getAuthUserLoaded),
       tap(loaded => {
         if (!loaded) {
           this.store.dispatch(new fromAuth.LoadUser());

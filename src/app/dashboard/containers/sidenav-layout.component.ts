@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
+import { Store, select } from '@ngrx/store';
+
 import * as fromDashboard from '@app/dashboard/store';
-import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-sidenav-layout',
@@ -31,8 +32,8 @@ export class SidenavLayoutComponent {
   showSidenav$: Observable<boolean>;
 
   constructor(private store: Store<fromDashboard.State>) {
-    this.showSidenav$ = this.store.select(
-      fromDashboard.getDashboardLayoutSidenav
+    this.showSidenav$ = this.store.pipe(
+      select(fromDashboard.getDashboardLayoutSidenav)
     );
   }
 }

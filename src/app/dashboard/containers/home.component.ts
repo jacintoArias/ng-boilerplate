@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import * as fromRoot from '@app/core/store';
@@ -32,15 +32,15 @@ export class HomeComponent implements OnInit {
   githubUsernameValid$: Observable<boolean>;
 
   constructor(private store: Store<fromRoot.State>) {
-    this.profile$ = this.store.select(fromAuth.getAuthUserProfile);
-    this.githubProfileData$ = this.store.select(
-      fromGithub.getGithubDataProfile
+    this.profile$ = this.store.pipe(select(fromAuth.getAuthUserProfile));
+    this.githubProfileData$ = this.store.pipe(
+      select(fromGithub.getGithubDataProfile)
     );
-    this.githubUsername$ = this.store.select(
-      fromGithub.getGithubServiceUsername
+    this.githubUsername$ = this.store.pipe(
+      select(fromGithub.getGithubServiceUsername)
     );
-    this.githubUsernameValid$ = this.store.select(
-      fromGithub.getGithubServiceUsernameValid
+    this.githubUsernameValid$ = this.store.pipe(
+      select(fromGithub.getGithubServiceUsernameValid)
     );
   }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Action, Store } from '@ngrx/store';
-import { Effect, Actions } from '@ngrx/effects';
+import { Action, Store, select } from '@ngrx/store';
+import { Effect, Actions, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs/Observable';
 import {
   map,
@@ -30,33 +30,34 @@ export class GithubDataEffects {
   ) {}
 
   @Effect()
-  userLoad$: Observable<Action> = this.actions$
-    .ofType(fromActions.GithubDataActionTypes.LoadData)
-    .pipe(
-      withLatestFrom(this.store.select(fromSelectors.getGithubService)),
-      map(([action, githubUserService]) => githubUserService),
-      filter(
-        githubUserService =>
-          githubUserService.usernameValid || !githubUserService.usernameChecked
-      ),
-      switchMap(status => {
-        return this.githubApiService
-          .getUser(status.username)
-          .pipe(
-            take(1),
-            map((user: GithubProfile) => new fromActions.LoadDataSuccess(user)),
-            catchError(err => of(new fromActions.LoadDataError(err)))
-          );
-      })
-    );
+  userLoad$: Observable<Action> = this.actions$.pipe(
+    ofType(fromActions.GithubDataActionTypes.LoadData),
+    withLatestFrom(this.store.pipe(select(fromSelectors.getGithubService))),
+    map(([action, githubUserService]) => githubUserService),
+    filter(
+      githubUserService =>
+        githubUserService.usernameValid || !githubUserService.usernameChecked
+    ),
+    switchMap(status => {
+      return this.githubApiService
+        .getUser(status.username)
+        .pipe(
+          take(1),
+          map((user: GithubProfile) => new fromActions.LoadDataSuccess(user)),
+          catchError(err => of(new fromActions.LoadDataError(err)))
+        );
+    })
+  );
 
   @Effect()
-  loadDataSuccess$: Observable<Action> = this.actions$
-    .ofType(fromActions.GithubDataActionTypes.LoadDataSuccess)
-    .pipe(map(() => new fromActions.ValidateUsername(true)));
+  loadDataSuccess$: Observable<Action> = this.actions$.pipe(
+    ofType(fromActions.GithubDataActionTypes.LoadDataSuccess),
+    map(() => new fromActions.ValidateUsername(true))
+  );
 
   @Effect()
-  loadDataError$: Observable<Action> = this.actions$
-    .ofType(fromActions.GithubDataActionTypes.LoadDataError)
-    .pipe(map(() => new fromActions.ValidateUsername(false)));
+  loadDataError$: Observable<Action> = this.actions$.pipe(
+    ofType(fromActions.GithubDataActionTypes.LoadDataError),
+    map(() => new fromActions.ValidateUsername(false))
+  );
 }
