@@ -50,72 +50,68 @@ describe('GithubUserSetterComponent', () => {
   });
 
   it('should show empty user from store, be valid and not submittable', () => {
-    const status = {
-      user: '',
-      userValid: true,
-      userLoading: false,
-    };
-    comp.githubUserStatus = status;
+    const username = '';
+    const usernameValid = false;
+
+    comp.username = username;
+    comp.usernameValid = usernameValid;
     fix.detectChanges();
-    testForm(status.user, status.userValid, false);
+    testForm(username, usernameValid, false);
   });
 
   it('should show valid user from store, be valid and submittable', () => {
-    const status = {
-      user: 'selectedUser',
-      userValid: true,
-      userLoading: false,
-    };
-    comp.githubUserStatus = status;
+    const username = 'selectedUser';
+    const usernameValid = true;
+
+    comp.username = username;
+    comp.usernameValid = usernameValid;
     fix.detectChanges();
-    testForm(status.user, status.userValid, true);
+    testForm(username, usernameValid, true);
   });
 
   it('should show invalid user from store, be invalid and submittable', () => {
-    const status = {
-      user: 'selectedUser',
-      userValid: false,
-      userLoading: false,
-    };
-    comp.githubUserStatus = status;
+    const username = 'selectedUser';
+    const usernameValid = false;
+
+    comp.username = username;
+    comp.usernameValid = usernameValid;
     fix.detectChanges();
-    testForm(status.user, status.userValid, true);
+    testForm(username, usernameValid, true);
   });
 
   it(
     'should transition from valid user to invalid from store, be invalid and submittable',
     fakeAsync(() => {
-      const statusA = {
-        user: 'selectedUser',
-        userValid: false,
-        userLoading: false,
-      };
-      comp.githubUserStatus = statusA;
+      const usernameA = 'selectedUser';
+      const usernameValidA = false;
+
+      comp.username = usernameA;
+      comp.usernameValid = usernameValidA;
       fix.detectChanges();
       tick();
-      const status = {
-        user: 'selectedUser',
-        userValid: true,
-        userLoading: false,
-      };
-      comp.githubUserStatus = status;
+
+      const usernameB = 'selectedUser';
+      const usernameValidB = true;
+
+      comp.username = usernameB;
+      comp.usernameValid = usernameValidB;
       fix.detectChanges();
       tick();
-      testForm(status.user, status.userValid, true);
+      testForm(usernameB, usernameValidB, true);
     })
   );
 
   it(
     'should transition from invalid user to valid when typing, be valid and submittable',
     fakeAsync(() => {
-      const statusA = {
-        user: 'selectedUser',
-        userValid: false,
-        userLoading: false,
-      };
-      comp.githubUserStatus = statusA;
+      const username = 'selectedUser';
+      const usernameValid = false;
+
+      comp.username = username;
+      comp.usernameValid = usernameValid;
       fix.detectChanges();
       tick();
+
       const typedUser = 'newSelectedUser';
       inputUser.value = typedUser;
       inputUser.dispatchEvent(new Event('input'));
@@ -129,20 +125,18 @@ describe('GithubUserSetterComponent', () => {
     'should emit setUser with form value user when submitted',
     fakeAsync(() => {
       const spy = spyOn(comp.setUser, 'emit');
+      const username = 'selectedUser';
+      const usernameValid = true;
 
-      const status = {
-        user: 'selectedUser',
-        userValid: true,
-        userLoading: false,
-      };
-      comp.githubUserStatus = status;
+      comp.username = username;
+      comp.usernameValid = usernameValid;
       fix.detectChanges();
       tick();
       submitButton.dispatchEvent(new Event('click'));
       fix.detectChanges();
       tick();
       expect(comp.setUser.emit).toHaveBeenCalledWith(
-        Object({ user: status.user })
+        Object({ user: username })
       );
     })
   );
@@ -151,13 +145,11 @@ describe('GithubUserSetterComponent', () => {
     'should emit resetUser and reset form when reset is clicked',
     fakeAsync(() => {
       const spy = spyOn(comp.resetUser, 'emit');
+      const username = 'selectedUser';
+      const usernameValid = true;
 
-      const status = {
-        user: 'selectedUser',
-        userValid: true,
-        userLoading: false,
-      };
-      comp.githubUserStatus = status;
+      comp.username = username;
+      comp.usernameValid = usernameValid;
       fix.detectChanges();
       tick();
       resetButton.dispatchEvent(new Event('click'));

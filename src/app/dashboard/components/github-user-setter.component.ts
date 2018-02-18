@@ -46,7 +46,7 @@ export class GithubUserSetterComponent implements OnChanges {
   form: FormGroup;
 
   @Input() username: string;
-  @Input() usernameValid: string;
+  @Input() usernameValid: boolean;
 
   @Output() setUser = new EventEmitter<string>();
   @Output() resetUser = new EventEmitter<string>();
