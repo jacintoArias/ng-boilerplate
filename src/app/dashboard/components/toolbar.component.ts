@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-toolbar',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <mat-toolbar color="primary" class="mat-elevation-z10">
+    <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="start center" color="primary">
       <span>Jarias Angular Boilerplate</span>
       <ng-content></ng-content>
     </mat-toolbar>

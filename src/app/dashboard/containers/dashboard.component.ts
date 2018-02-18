@@ -10,18 +10,16 @@ import * as fromDashboard from '@app/dashboard/store';
   selector: 'app-dashboard',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <app-toolbar>
+    <app-toolbar class="mat-elevation-z6">
       <app-toolbar-button icon="menu" (navigate)="toggleSidenav()"></app-toolbar-button>
       <app-toolbar-button icon="lock" (navigate)="logout()"></app-toolbar-button>
     </app-toolbar>
 
     <app-sidenav-layout>
-      <div class="dashboard-wrapper">
-        <router-outlet></router-outlet>
-      </div>
+      <router-outlet></router-outlet>
     </app-sidenav-layout>
   `,
-  styles: [],
+  styles: [``],
 })
 export class DashboardComponent {
   constructor(private store: Store<fromRoot.State>) {}

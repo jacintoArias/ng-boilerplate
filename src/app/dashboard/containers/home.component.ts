@@ -13,6 +13,7 @@ import { GithubProfile } from '@app/github/models';
   selector: 'app-home',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
+  <div class="wrapper" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10px" >
     <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="10px" fxLayoutWrap>
       <app-user-details [profile]="profile$ | async"></app-user-details>
       <app-github-user-setter (setUser)="setGithubUser($event)"
@@ -22,6 +23,7 @@ import { GithubProfile } from '@app/github/models';
       </app-github-user-setter>
       <app-github-user-info [githubUser]="(githubProfileData$ | async)"></app-github-user-info>
     </div>
+  </div>
   `,
   styles: [],
 })
