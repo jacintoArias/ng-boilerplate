@@ -36,6 +36,6 @@ import { GithubUserSetterComponent } from './components/github-user-setter.compo
     GithubUserInfoComponent,
     GithubUserSetterComponent,
   ],
-  providers: []
+  providers: [],
 })
-export class DashboardModule { }
+export class DashboardModule {}

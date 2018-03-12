@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { map, tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -24,10 +24,9 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    return this.store.select(fromAuth.getTokens).pipe(
-      map(
-        (tokens: Tokens) => tokens && !this.jwt.isTokenExpired(tokens.idToken)
-      ),
+    return this.store.pipe(
+      select(fromAuth.getAuthSessionIdToken),
+      map(token => token && !this.jwt.isTokenExpired(token)),
       tap(authed => {
         if (!authed) {
           this.store.dispatch(new fromAuth.Logout());

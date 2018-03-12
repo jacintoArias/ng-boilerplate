@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
-import {
-  Routes,
-  RouterModule
-} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardComponent } from '@app/dashboard/containers/dashboard.component';
 import { HomeComponent } from '@app/dashboard/containers/home.component';
 
 const routes: Routes = [
-  { path: '',
+  {
+    path: '',
     component: DashboardComponent,
     children: [
       {
@@ -20,12 +18,11 @@ const routes: Routes = [
         redirectTo: '/home',
       },
     ],
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class DashboardRoutingModule {}
-

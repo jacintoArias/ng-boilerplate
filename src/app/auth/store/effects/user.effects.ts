@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Effect, Actions } from '@ngrx/effects';
+import { Effect, Actions, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 
@@ -12,16 +12,15 @@ export class UserEffects {
   constructor(private actions$: Actions, private auth0Service: Auth0Service) {}
 
   @Effect()
-  loadUser$ = this.actions$
-    .ofType(userActions.UserActionTypes.LoadUser)
-    .pipe(
-      switchMap(() =>
-        this.auth0Service
-          .getUser()
-          .pipe(
-            map(user => new userActions.LoadUserSuccess(user)),
-            catchError((err: Error) => of(new userActions.LoadUserFail(err)))
-          )
-      )
-    );
+  loadUser$ = this.actions$.pipe(
+    ofType(userActions.UserActionTypes.LoadUser),
+    switchMap(() =>
+      this.auth0Service
+        .getUser()
+        .pipe(
+          map(user => new userActions.LoadUserSuccess(user)),
+          catchError((err: Error) => of(new userActions.LoadUserFail(err)))
+        )
+    )
+  );
 }

@@ -1,25 +1,38 @@
-
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 // Global
 
-// Dashboard
-
-$app-dashboard-wrapper-padding: 20px;
-
-// some basic resets
 body {
   padding: 0;
   margin: 0;
+  height: 100%;
   font-family: Roboto, sans-serif;
 }
 
-mat-toolbar {
-  z-index: 10;
+// Dashboard
+
+app-root {
+  position: absolute;
+  top: 56px;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
-app-dashboard {
-  .dashboard-wrapper {
-    padding: $app-dashboard-wrapper-padding;
+app-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+app-sidenav {
+  z-index: 1;
+}
+
+@media (max-width: 720px) {
+  app-root {
+    top: 92px;
   }
 }

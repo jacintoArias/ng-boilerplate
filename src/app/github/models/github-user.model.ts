@@ -1,5 +1,4 @@
-
-export interface GithubUser {
+export interface GithubProfile {
   login: string;
   id: number;
   avatar_url: string;
@@ -32,21 +31,7 @@ export interface GithubUser {
   updated_at: string;
 }
 
-export interface GithubUserStatus {
-  user: string;
-  userValid: boolean;
-  userLoading: boolean;
-}
-
-export function getGithubUserStatusInit(): GithubUserStatus {
-  return {
-    user: '',
-    userValid: true,
-    userLoading: false,
-  };
-}
-
-export function genGithubUserMock(): GithubUser {
+export function genGithubProfileMock(): GithubProfile {
   return {
     login: 'mock',
     id: 1234,
@@ -56,27 +41,27 @@ export function genGithubUserMock(): GithubUser {
     html_url: 'http://github.com',
     followers_url: 'http://github.com',
     following_url: 'http://github.com',
-  gists_url: 'http://github.com',
-  starred_url: 'http://github.com',
-  subscriptions_url: 'http://github.com',
-  organizations_url: 'http://github.com',
-  repos_url: 'http://github.com',
-  events_url: 'http://github.com',
-  received_events_url: 'http://github.com',
-  type: 'user',
-  site_admin: false,
-  name: 'Mock McMock',
-  company: 'Mockers SL',
-  blog: '',
-  location: '',
-  email: 'mock@example.com',
-  hireable: false,
-  bio: '',
-  public_repos: 3,
-  public_gists: 4,
-  followers: 5,
-  following: 8,
-  created_at: '',
-  updated_at: '',
-};
+    gists_url: 'http://github.com',
+    starred_url: 'http://github.com',
+    subscriptions_url: 'http://github.com',
+    organizations_url: 'http://github.com',
+    repos_url: 'http://github.com',
+    events_url: 'http://github.com',
+    received_events_url: 'http://github.com',
+    type: 'user',
+    site_admin: false,
+    name: 'Mock McMock',
+    company: 'Mockers SL',
+    blog: '',
+    location: '',
+    email: 'mock@example.com',
+    hireable: false,
+    bio: '',
+    public_repos: 3,
+    public_gists: 4,
+    followers: 5,
+    following: 8,
+    created_at: '',
+    updated_at: '',
+  };
 }

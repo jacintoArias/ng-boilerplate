@@ -1,6 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  EventEmitter,
+  Input,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormGroup, FormControl, AbstractControl } from '@angular/forms';
-import { getGithubUserStatusInit, GithubUserStatus } from '@app/github/models';
 
 @Component({
   selector: 'app-github-user-setter',
@@ -11,7 +17,7 @@ import { getGithubUserStatusInit, GithubUserStatus } from '@app/github/models';
         <mat-card-content>
           <form [formGroup]="form">
             <mat-form-field>
-              <input matInput formControlName="user" placeholder="github username" >
+              <input matInput formControlName="username" placeholder="github username" >
               <mat-error *ngIf="form.invalid">Github user not found</mat-error>
             </mat-form-field>
             <div>
@@ -34,34 +40,36 @@ import { getGithubUserStatusInit, GithubUserStatus } from '@app/github/models';
       </mat-card-content>
     </mat-card>
   `,
-  styles: []
+  styles: [],
 })
-export class GithubUserSetterComponent {
-
+export class GithubUserSetterComponent implements OnChanges {
   form: FormGroup;
-  _status: GithubUserStatus = getGithubUserStatusInit();
 
-  // Push validator info through the form when value changes
-  @Input() set githubUserStatus(value: GithubUserStatus) {
-    this._status = value;
-    this.form.patchValue(value);
-    Object.keys(this.form.controls).forEach(control => {
-      this.form.controls[control].updateValueAndValidity()
-      this.form.controls[control].markAsTouched();
-    });
-  }
+  @Input() username: string;
+  @Input() usernameValid: boolean;
+
   @Output() setUser = new EventEmitter<string>();
   @Output() resetUser = new EventEmitter<string>();
 
   constructor() {
     this.form = new FormGroup({
-      user: new FormControl('', this.validateUsername.bind(this)),
+      username: new FormControl('', this.validateUsername.bind(this)),
+    });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.form.patchValue({ username: this.username });
+    Object.keys(this.form.controls).forEach(control => {
+      this.form.controls[control].updateValueAndValidity();
+      this.form.controls[control].markAsTouched();
     });
   }
 
   public validateUsername(control: AbstractControl) {
-    const userModified = this._status.user !== control.value;
-    return  this._status.userValid || userModified ? null : { validUsername: true };
+    const userModified = this.username !== control.value;
+    return this.username === '' || this.usernameValid || userModified
+      ? null
+      : { validUsername: true };
   }
 
   public reset() {
@@ -70,6 +78,6 @@ export class GithubUserSetterComponent {
   }
 
   public isSubmittable(): boolean {
-    return this.form.value.user;
+    return this.form.value.username;
   }
 }

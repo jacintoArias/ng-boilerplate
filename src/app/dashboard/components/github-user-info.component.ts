@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GithubUser } from '@app/github/models';
+import { GithubProfile } from '@app/github/models';
 
 @Component({
   selector: 'app-github-user-info',
@@ -31,18 +31,16 @@ import { GithubUser } from '@app/github/models';
       </mat-card>
     </ng-template>
   `,
-  styles: []
+  styles: [],
 })
 export class GithubUserInfoComponent implements OnInit {
-
-  @Input() githubUser: GithubUser;
+  @Input() githubUser: GithubProfile;
 
   errorMessage = 'No github profile set!';
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   public setAvatar(picture) {
     return {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { map, take } from 'rxjs/operators';
 
@@ -10,25 +10,17 @@ import { Tokens } from '../models';
 /*
   This service is need to be injected as a dependency into
   the Auth0 interceptor. See AuthModule
+
+  wether this can be avoided or not using a better injection approach see #3
+
+  Idelly the interceptor should make use of the store directly and the apporpiate
+  selector (getAuthSessionIsAuthenticated)
  */
 @Injectable()
 export class TokenService {
-
-  constructor(
-    private store: Store<fromAuth.State>
-  ) { }
-
-  public getTokens(): Observable<Tokens> {
-    return this.store.select(fromAuth.getTokens);
-  }
+  constructor(private store: Store<fromAuth.State>) {}
 
   public getAccessToken() {
-    return this.getTokens()
-      .pipe(
-        map(tokens => tokens.accessToken),
-        take(1),
-      );
+    return this.store.pipe(select(fromAuth.getAuthSessionAccessToken), take(1));
   }
-
-
 }
