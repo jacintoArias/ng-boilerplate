@@ -2,28 +2,29 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AuthModule } from '@app/auth/';
-import { GithubModule } from '@app/github';
 import { environment } from '@env/environment';
 
-import { reducers, metaReducers, effects } from './store/';
+import { reducers, metaReducers, effects } from './store';
+import { containers, components } from './containers';
 
 @NgModule({
   imports: [
     CommonModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    RouterModule,
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot(effects),
     AuthModule.forRoot(),
-    GithubModule.forRoot(),
   ],
-  declarations: [],
+  declarations: [containers, components],
   providers: [],
 })
 export class CoreModule {

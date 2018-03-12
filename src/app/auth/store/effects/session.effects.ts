@@ -45,7 +45,6 @@ export class SessionEffects {
   @Effect({ dispatch: false })
   logout$ = this.actions$.pipe(
     ofType(sessionActions.SessionActionTypes.Logout),
-    // map(() => new userActions.ProfileRemove()),
     tap(() => this.auth0Service.login())
   );
 }
