@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { CallbackComponent, HomeComponent } from '@app/core/containers';
+import { CallbackComponent } from '@app/core/containers';
 import { AuthGuard, UserLoadedGuard } from '@app/auth/guards';
 
 export const routes: Routes = [
@@ -11,7 +11,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: HomeComponent,
+    loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
     canActivate: [AuthGuard, UserLoadedGuard],
   },
   {
