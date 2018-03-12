@@ -11,7 +11,7 @@ import { AuthModule } from '@app/auth/';
 import { environment } from '@env/environment';
 
 import { reducers, metaReducers, effects } from './store';
-import { containers, components } from './containers';
+import { containers } from './containers';
 
 @NgModule({
   imports: [
@@ -24,7 +24,7 @@ import { containers, components } from './containers';
     EffectsModule.forRoot(effects),
     AuthModule.forRoot(),
   ],
-  declarations: [containers, components],
+  declarations: [containers],
   providers: [],
 })
 export class CoreModule {
