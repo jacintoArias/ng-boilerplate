@@ -9,9 +9,15 @@ import { environment } from 'environments/environment';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { localStorageSync } from 'ngrx-store-localstorage';
 
-export interface State {}
+import * as fromLayout from './layout.reducer';
 
-export const reducers: ActionReducerMap<State> = {};
+export interface State {
+  layout: fromLayout.LayoutState;
+}
+
+export const reducers: ActionReducerMap<State> = {
+  layout: fromLayout.reducer,
+};
 
 // console.log all actions
 export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
@@ -27,7 +33,7 @@ export function localStorageSyncReducer(
   reducer: ActionReducer<any>
 ): ActionReducer<any> {
   return localStorageSync({
-    keys: [{ auth: ['session'] }, { github: ['service'] }],
+    keys: [{ auth: ['session'] }],
     rehydrate: true,
   })(reducer);
 }

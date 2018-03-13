@@ -7,11 +7,13 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { SharedModule } from '@app/shared';
 import { AuthModule } from '@app/auth/';
 import { environment } from '@env/environment';
 
 import { reducers, metaReducers, effects } from './store';
 import { containers } from './containers';
+import { components } from './components';
 
 @NgModule({
   imports: [
@@ -22,9 +24,10 @@ import { containers } from './containers';
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot(effects),
+    SharedModule,
     AuthModule.forRoot(),
   ],
-  declarations: [containers],
+  declarations: [containers, components],
   providers: [],
 })
 export class CoreModule {

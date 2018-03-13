@@ -5,8 +5,8 @@ import { UserDetailsComponent } from './user-details.component';
 
 export const components: any[] = [
   SidenavItemComponent,
-  ToolbarButtonComponent,
   ToolbarComponent,
+  ToolbarButtonComponent,
   UserDetailsComponent,
 ];
 

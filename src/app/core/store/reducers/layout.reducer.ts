@@ -1,14 +1,17 @@
 import { LayoutAction, LayoutActionTypes } from '../actions/layout.actions';
 
-export interface State {
+export interface LayoutState {
   sidenav: boolean;
 }
 
-const initialState: State = {
+const initialState: LayoutState = {
   sidenav: true,
 };
 
-export function reducer(state = initialState, action: LayoutAction): State {
+export function reducer(
+  state = initialState,
+  action: LayoutAction
+): LayoutState {
   switch (action.type) {
     case LayoutActionTypes.SidenavToggle:
       return {
@@ -21,4 +24,4 @@ export function reducer(state = initialState, action: LayoutAction): State {
   }
 }
 
-export const getSidenav = (state: State) => state.sidenav;
+export const getSidenav = (state: LayoutState) => state.sidenav;
