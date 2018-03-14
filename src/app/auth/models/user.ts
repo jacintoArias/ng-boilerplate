@@ -5,7 +5,6 @@ export interface User {
   name?: string;
   nickname?: string;
   picture?: string;
-  github_user?: string;
 }
 
 export function generateMockUser(): User {
@@ -16,6 +15,5 @@ export function generateMockUser(): User {
     name: 'mock',
     nickname: 'mock',
     picture: 'http://www.gravatar.com/avatar',
-    github_user: '',
   };
 }

@@ -47,13 +47,8 @@ export class Auth0Service {
   }
 
   public handleAuthentication(): Observable<{ tokens: Tokens; profile: User }> {
-    return Observable.bindNodeCallback(
-      (
-        callback: (
-          err: Error,
-          res: { idToken; accessToken; idTokenPayload }
-        ) => void
-      ) => this.auth0Authorizer.parseHash(callback)
+    return Observable.bindNodeCallback(cb =>
+      this.auth0Authorizer.parseHash(cb)
     )().pipe(
       map(({ idToken, accessToken, idTokenPayload }) => ({
         tokens: { idToken, accessToken },

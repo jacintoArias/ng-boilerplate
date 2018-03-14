@@ -9,7 +9,6 @@ export const containers: any[] = [
   HomeComponent,
   SidenavComponent,
 ];
-export const components: any[] = [];
 
 export * from './app.component';
 export * from './callback.component';
