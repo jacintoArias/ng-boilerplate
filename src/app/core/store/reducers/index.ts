@@ -27,7 +27,7 @@ export function localStorageSyncReducer(
   reducer: ActionReducer<any>
 ): ActionReducer<any> {
   return localStorageSync({
-    keys: [{ auth: ['session'] }, { github: ['service'] }],
+    keys: [{ auth: ['session'] }],
     rehydrate: true,
   })(reducer);
 }

@@ -24,7 +24,7 @@ import { containers } from './containers';
     EffectsModule.forRoot(effects),
     AuthModule.forRoot(),
   ],
-  declarations: [containers],
+  declarations: [...containers],
   providers: [],
 })
 export class CoreModule {

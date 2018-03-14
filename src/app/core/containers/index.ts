@@ -7,7 +7,6 @@ export const containers: any[] = [
   CallbackComponent,
   HomeComponent,
 ];
-export const components: any[] = [];
 
 export * from './app.component';
 export * from './callback.component';
