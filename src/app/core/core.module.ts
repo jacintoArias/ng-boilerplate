@@ -13,6 +13,7 @@ import { environment } from '@env/environment';
 
 import { reducers, metaReducers, effects } from './store';
 import { containers } from './containers';
+import { components } from './components';
 
 @NgModule({
   imports: [
@@ -26,7 +27,7 @@ import { containers } from './containers';
     SharedModule,
     AuthModule.forRoot(),
   ],
-  declarations: [...containers],
+  declarations: [...containers, ...components],
   providers: [],
 })
 export class CoreModule {
