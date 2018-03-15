@@ -1,7 +1,7 @@
 import { AuthGuard } from './auth.guard';
-import { UserLoadedGuard } from './user-loaded.guard';
+import { UserPreloadGuard } from './user-preload.guard';
 
-export const guards: any[] = [AuthGuard, UserLoadedGuard];
+export const guards: any[] = [AuthGuard, UserPreloadGuard];
 
 export * from './auth.guard';
-export * from './user-loaded.guard';
+export * from './user-preload.guard';

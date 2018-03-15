@@ -13,7 +13,7 @@ import { of } from 'rxjs/observable/of';
 import * as fromAuth from '@app/auth/store';
 
 @Injectable()
-export class UserLoadedGuard implements CanActivate {
+export class UserPreloadGuard implements CanActivate {
   constructor(private store: Store<fromAuth.State>) {}
 
   canActivate(
@@ -34,7 +34,6 @@ export class UserLoadedGuard implements CanActivate {
           this.store.dispatch(new fromAuth.LoadUser());
         }
       }),
-      filter(loaded => loaded),
       take(1)
     );
   }
