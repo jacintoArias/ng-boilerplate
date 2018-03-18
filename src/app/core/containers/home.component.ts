@@ -15,7 +15,13 @@ import { User } from '@app/auth/models';
     <app-user-details fxFlex="noshrink" [profile]="user$ | async"></app-user-details>
   </div>
   `,
-  styles: [],
+  styles: [
+    `
+    .wrapper {
+      padding: 10px;
+    }
+  `,
+  ],
 })
 export class HomeComponent implements OnInit {
   user$: Observable<User>;

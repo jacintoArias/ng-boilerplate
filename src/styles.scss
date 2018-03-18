@@ -9,11 +9,11 @@ body {
   font-family: Roboto, sans-serif;
 }
 
-// Dashboard
+// App selectors
 
 app-root {
   position: absolute;
-  top: 56px;
+  top: 64px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -33,11 +33,11 @@ app-sidenav {
 
 @media (max-width: 720px) {
   app-root {
-    top: 92px;
+    top: 56px;
   }
 }
 
-// Misc
+// Material related
 
 .mat-card-avatar-placeholder {
   background: #673ab7;

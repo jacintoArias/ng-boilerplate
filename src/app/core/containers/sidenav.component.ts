@@ -18,9 +18,7 @@ import * as fromRoot from '@app/core/store';
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <div class="wrapper">
-        <ng-content></ng-content>
-      </div>
+      <ng-content></ng-content>
     </mat-sidenav-content>
 
   </mat-sidenav-container>
@@ -33,10 +31,6 @@ import * as fromRoot from '@app/core/store';
 
     mat-sidenav {
        min-width: 200px;
-    }
-
-    .wrapper {
-      padding: 15px;
     }
   `,
   ],
