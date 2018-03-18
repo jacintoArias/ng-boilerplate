@@ -5,42 +5,40 @@ import { User } from '@app/auth/models';
 @Component({
   selector: 'app-user-details',
   template: `
-    <mat-card *ngIf="profile; else notfoundTemplate">
+
+  <mat-card *ngIf="profile, else loadingTemplate">
+    <mat-card-header>
+      <div mat-card-avatar [ngStyle]="setAvatar()"></div>
+      <mat-card-title>{{profile.nickname}}</mat-card-title>
+      <mat-card-subtitle>{{profile.email}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>Our logged user.</p>
+    </mat-card-content>
+  </mat-card>
+
+  <ng-template #loadingTemplate>
+    <mat-card>
+      <app-loading-overlay></app-loading-overlay>
       <mat-card-header>
-        <div mat-card-avatar [ngStyle]="setAvatar()"></div>
-        <mat-card-title>{{ profile.nickname }}</mat-card-title>
-        <mat-card-subtitle>{{ profile.email }}</mat-card-subtitle>
+        <div mat-card-avatar class="mat-card-avatar-placeholder"></div>
+        <mat-card-title>
+          <app-text-placeholder width="15"></app-text-placeholder>
+        </mat-card-title>
+        <mat-card-subtitle>
+          <app-text-placeholder width="12"></app-text-placeholder>
+        </mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <p>
-          Our logged user.
-        </p>
+        <app-text-placeholder lines="3" width="12"></app-text-placeholder>
       </mat-card-content>
     </mat-card>
-
-    <ng-template #notfoundTemplate>
-      <mat-card>
-        <mat-card-header>
-          <div mat-card-avatar></div>
-          <mat-card-title>-</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <p>
-            {{ errorMessage }}
-          </p>
-        </mat-card-content>
-      </mat-card>
-    </ng-template>
+  </ng-template>
   `,
-  styles: [
-    `
-  `,
-  ],
+  styles: [``],
 })
 export class UserDetailsComponent {
   @Input() profile: User;
-
-  errorMessage = 'Error Fetching the user profile.';
 
   constructor() {}
 

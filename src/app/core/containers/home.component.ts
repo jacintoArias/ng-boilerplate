@@ -11,19 +11,19 @@ import { User } from '@app/auth/models';
   selector: 'app-home',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-  <div class="wrapper" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10px" >
-    <div fxLayout="row" fxLayoutAlign="start stretch" fxLayoutGap="10px" fxLayoutWrap>
-      <app-user-details [profile]="profile$ | async"></app-user-details>
-    </div>
+  <div class="wrapper" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="10px">
+    <app-user-details fxFlex="noshrink" [profile]="user$ | async"></app-user-details>
   </div>
   `,
   styles: [],
 })
 export class HomeComponent implements OnInit {
-  profile$: Observable<User>;
+  user$: Observable<User>;
+  userLoading$: Observable<boolean>;
 
   constructor(private store: Store<fromRoot.State>) {
-    this.profile$ = this.store.pipe(select(fromAuth.getAuthUserProfile));
+    this.user$ = this.store.pipe(select(fromAuth.getAuthUserProfile));
+    this.userLoading$ = this.store.pipe(select(fromAuth.getAuthUserLoading));
   }
 
   ngOnInit(): void {}

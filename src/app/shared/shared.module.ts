@@ -25,6 +25,8 @@ const materialModules = [
   MatProgressSpinnerModule,
 ];
 
+import { components } from './components';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -32,7 +34,12 @@ const materialModules = [
     FlexLayoutModule,
     ...materialModules,
   ],
-  exports: [...materialModules, ReactiveFormsModule, FlexLayoutModule],
-  declarations: [],
+  declarations: [...components],
+  exports: [
+    ...materialModules,
+    ReactiveFormsModule,
+    FlexLayoutModule,
+    ...components,
+  ],
 })
 export class SharedModule {}
