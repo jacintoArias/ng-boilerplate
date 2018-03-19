@@ -8,6 +8,7 @@ import { of } from 'rxjs/observable/of';
 import { Auth0Service } from 'app/auth/services/auth0.service';
 import * as sessionActions from '../actions/session.actions';
 import * as userActions from '../actions/user.actions';
+import * as fromRoot from '@app/core/store';
 
 @Injectable()
 export class SessionEffects {
@@ -36,10 +37,10 @@ export class SessionEffects {
     catchError(err => of(new sessionActions.Logout()))
   );
 
-  @Effect({ dispatch: false })
+  @Effect()
   loginSuccess$ = this.actions$.pipe(
     ofType(sessionActions.SessionActionTypes.LoginSucess),
-    tap(() => this.router.navigate(['/']))
+    map(() => new fromRoot.Go({ path: ['/'] }))
   );
 
   @Effect({ dispatch: false })
