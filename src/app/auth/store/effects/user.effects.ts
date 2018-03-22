@@ -13,13 +13,13 @@ export class UserEffects {
 
   @Effect()
   loadUser$ = this.actions$.pipe(
-    ofType(userActions.UserActionTypes.LoadUser),
+    ofType(userActions.UserActionTypes.UserLoad),
     switchMap(() =>
       this.auth0Service
         .getUser()
         .pipe(
-          map(user => new userActions.LoadUserSuccess(user)),
-          catchError((err: Error) => of(new userActions.LoadUserFail(err)))
+          map(user => new userActions.UserLoadSuccess(user)),
+          catchError((err: Error) => of(new userActions.UserLoadFail(err)))
         )
     )
   );

@@ -27,7 +27,7 @@ export class UserPreloadGuard implements CanActivate {
   }
 
   preload() {
-    this.store.dispatch(new fromAuth.LoadUser());
+    this.store.dispatch(new fromAuth.UserLoad());
   }
 
   checkLoaded(): Observable<boolean> {

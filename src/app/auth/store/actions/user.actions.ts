@@ -3,23 +3,23 @@ import { Action } from '@ngrx/store';
 import { User } from '../../models';
 
 export enum UserActionTypes {
-  LoadUser = '[Auth] LoadUser',
-  LoadUserSuccess = '[Auth] LoadUserSuccess',
-  LoadUserFail = '[Auth] LoadUserFail',
+  UserLoad = '[Auth] UserLoad',
+  UserLoadSuccess = '[Auth] UserLoadSuccess',
+  UserLoadFail = '[Auth] UserLoadFail',
 }
 
-export class LoadUser implements Action {
-  readonly type = UserActionTypes.LoadUser;
+export class UserLoad implements Action {
+  readonly type = UserActionTypes.UserLoad;
 }
 
-export class LoadUserSuccess implements Action {
-  readonly type = UserActionTypes.LoadUserSuccess;
+export class UserLoadSuccess implements Action {
+  readonly type = UserActionTypes.UserLoadSuccess;
   constructor(public payload: User) {}
 }
 
-export class LoadUserFail implements Action {
-  readonly type = UserActionTypes.LoadUserFail;
+export class UserLoadFail implements Action {
+  readonly type = UserActionTypes.UserLoadFail;
   constructor(public payload: Error) {}
 }
 
-export type UserActions = LoadUser | LoadUserSuccess | LoadUserFail;
+export type UserActions = UserLoad | UserLoadSuccess | UserLoadFail;

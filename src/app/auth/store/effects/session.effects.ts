@@ -32,7 +32,7 @@ export class SessionEffects {
     ),
     mergeMap(res => [
       new sessionActions.LoginSuccess(res.tokens),
-      new userActions.LoadUserSuccess(res.profile),
+      new userActions.UserLoadSuccess(res.profile),
     ]),
     catchError(err => of(new sessionActions.Logout()))
   );

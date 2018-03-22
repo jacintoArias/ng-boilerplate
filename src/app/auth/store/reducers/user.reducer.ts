@@ -15,14 +15,14 @@ const initialState: State = {
 
 export function reducer(state = initialState, action: UserActions): State {
   switch (action.type) {
-    case UserActionTypes.LoadUser:
+    case UserActionTypes.UserLoad:
       return {
         ...state,
         loaded: false,
         loading: true,
       };
 
-    case UserActionTypes.LoadUserSuccess:
+    case UserActionTypes.UserLoadSuccess:
       return {
         ...state,
         profile: action.payload,
@@ -30,7 +30,7 @@ export function reducer(state = initialState, action: UserActions): State {
         loading: false,
       };
 
-    case UserActionTypes.LoadUserFail:
+    case UserActionTypes.UserLoadFail:
       return initialState;
 
     default:
