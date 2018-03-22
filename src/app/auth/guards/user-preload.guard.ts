@@ -32,7 +32,7 @@ export class UserPreloadGuard implements CanActivate {
 
   checkLoaded(): Observable<boolean> {
     return this.store.pipe(
-      select(fromAuth.getAuthUserLoaded),
+      select(fromAuth.getUserLoaded),
       // TODO: Load a single location
       tap(loaded => {
         if (!loaded) {

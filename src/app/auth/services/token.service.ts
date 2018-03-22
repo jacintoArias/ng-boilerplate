@@ -21,6 +21,6 @@ export class TokenService {
   constructor(private store: Store<fromAuth.State>) {}
 
   public getAccessToken() {
-    return this.store.pipe(select(fromAuth.getAuthSessionAccessToken), take(1));
+    return this.store.pipe(select(fromAuth.getSessionAccessToken), take(1));
   }
 }

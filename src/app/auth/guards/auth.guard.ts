@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> {
     return this.store.pipe(
-      select(fromAuth.getAuthSessionIdToken),
+      select(fromAuth.getSessionIdToken),
       map(token => token && !this.jwt.isTokenExpired(token)),
       tap(authed => {
         if (!authed) {
