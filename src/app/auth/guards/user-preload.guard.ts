@@ -20,20 +20,27 @@ export class UserPreloadGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    return this.checkStore().pipe(
+    return this.checkLoaded().pipe(
       switchMap(() => of(true)),
       catchError(() => of(false))
     );
   }
 
-  checkStore(): Observable<boolean> {
+  preload() {
+    this.store.dispatch(new fromAuth.LoadUser());
+  }
+
+  checkLoaded(): Observable<boolean> {
     return this.store.pipe(
       select(fromAuth.getAuthUserLoaded),
+      // TODO: Load a single location
       tap(loaded => {
         if (!loaded) {
-          this.store.dispatch(new fromAuth.LoadUser());
+          this.preload();
         }
       }),
+      // Wait for Locations to be loaded
+      filter(loaded => loaded),
       take(1)
     );
   }
