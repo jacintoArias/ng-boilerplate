@@ -6,9 +6,8 @@ import {
 } from '@angular/router';
 
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 import { catchError, filter, map, switchMap, take, tap } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
 
 import * as fromAuth from '@app/auth/store';
 

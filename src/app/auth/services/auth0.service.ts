@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable, bindNodeCallback } from 'rxjs';
 import { map } from 'rxjs/operators';
-import 'rxjs/add/observable/bindNodeCallback';
 
 import * as auth0 from 'auth0-js';
 
@@ -47,9 +46,16 @@ export class Auth0Service {
   }
 
   public handleAuthentication(): Observable<{ tokens: Tokens; profile: User }> {
-    return Observable.bindNodeCallback(cb =>
-      this.auth0Authorizer.parseHash(cb)
-    )().pipe(
+    const parseHashAsObservable = bindNodeCallback(
+      (
+        callback: (
+          error: Error,
+          payload: { idToken; accessToken; idTokenPayload }
+        ) => void
+      ) => this.auth0Authorizer.parseHash(callback)
+    );
+
+    return parseHashAsObservable().pipe(
       map(({ idToken, accessToken, idTokenPayload }) => ({
         tokens: { idToken, accessToken },
         profile: Auth0Service.payload2user(idTokenPayload),

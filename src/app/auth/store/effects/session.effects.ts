@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { tap, map, switchMap, catchError, mergeMap } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
+import { of } from 'rxjs';
 
 import { Auth0Service } from 'app/auth/services/auth0.service';
 import * as sessionActions from '../actions/session.actions';
